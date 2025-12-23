@@ -11,8 +11,8 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Go up one directory from the Next.js app to reach the prompts directory
-    const baseDir = path.join(process.cwd(), '..');
+    // Read from the local prompts directory within the project
+    const baseDir = path.join(process.cwd(), 'src', 'prompts');
     const fullPath = path.join(baseDir, filePath);
 
     // Security check: ensure the path is within the expected directory
