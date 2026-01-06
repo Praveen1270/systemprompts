@@ -1,30 +1,60 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import ToolCard from '@/components/ToolCard';
+import Link from 'next/link';
+import { Plus, Loader2 } from 'lucide-react';
+import PromptCard from '@/components/PromptCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import SearchBar from '@/components/SearchBar';
-import { tools, categories } from '@/data/tools';
-import { ArrowRight } from 'lucide-react';
+import { categories } from '@/data/tools';
+import type { PromptIndexItem } from '@/data/promptTypes';
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [items, setItems] = useState<PromptIndexItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
-  const filteredTools = useMemo(() => {
-    return tools.filter((tool) => {
-      const matchesCategory = !selectedCategory || tool.category === selectedCategory;
+  useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setLoadError(null);
+
+    fetch('/api/prompts')
+      .then((res) => res.json())
+      .then((data) => {
+        if (cancelled) return;
+        setItems(Array.isArray(data?.items) ? data.items : []);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setLoadError('Failed to load prompts');
+      })
+      .finally(() => {
+        if (cancelled) return;
+        setLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const filteredPrompts = useMemo(() => {
+    const q = searchQuery.trim().toLowerCase();
+    return items.filter((p) => {
+      const matchesCategory = !selectedCategory || p.toolCategory === selectedCategory;
       const matchesSearch =
-        !searchQuery ||
-        tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tool.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
+        !q ||
+        p.title.toLowerCase().includes(q) ||
+        p.toolName.toLowerCase().includes(q) ||
+        p.tags.some((t) => t.toLowerCase().includes(q));
+      const matchesKind = p.kind === 'prompt';
+      return matchesCategory && matchesSearch && matchesKind;
     });
-  }, [selectedCategory, searchQuery]);
-
-  const featuredLogos = tools.filter(tool => tool.id !== 'replit').slice(0, 8);
+  }, [items, searchQuery, selectedCategory]);
 
   return (
     <div className="min-h-screen w-full relative">
@@ -32,146 +62,115 @@ export default function Home() {
       <div
         className="fixed inset-0 z-0"
         style={{
-          background: "radial-gradient(125% 125% at 50% 90%, #fff 40%, #6366f1 100%)",
+          background: 'radial-gradient(125% 125% at 50% 90%, #fff 35%, #6366f1 100%)',
         }}
       />
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28">
-          <div className="max-w-6xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center max-w-4xl mx-auto"
-            >
-              {/* Small Subtitle */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-[#86868b] text-lg mb-6"
-              >
-                <span className="font-normal">Welcome to</span>{' '}
-                <span className="italic">the Collection</span>
-              </motion.p>
-
-              {/* Main Title with Gradient Effect */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8">
-                <span className="hero-gradient-text">AI.Prompts.Hub</span>
-              </h1>
-
-              {/* Description */}
-              <p className="text-lg md:text-xl text-[#86868b] max-w-2xl mx-auto mb-10">
-                Explore system prompts from leading AI coding assistants and development tools.
-              </p>
-
-              {/* CTA Button */}
-              <div className="flex flex-wrap justify-center gap-4 mb-16">
-                <motion.a
-                  href="#tools"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white border-2 border-[#1d1d1f] text-[#1d1d1f] font-medium hover:bg-[#1d1d1f] hover:text-white transition-all"
-                >
-                  Get Started
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
-              </div>
-
-              {/* Featured Logos */}
+        <section className="max-w-7xl mx-auto px-6 py-10 lg:py-14">
+          <main className="min-w-0">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="flex flex-wrap justify-center items-center gap-8"
+                transition={{ duration: 0.55 }}
+                className="text-center"
               >
-                {featuredLogos.map((tool) => (
-                  <div key={tool.id} className="w-8 h-8 hover:scale-110 transition-transform">
-                    <Image
-                      src={tool.logo}
-                      alt={tool.name}
-                      width={32}
-                      height={32}
-                      className="object-contain"
-                      unoptimized
+                <div className="flex items-center justify-center text-[#6e6e73] mb-3">
+                  <span className="text-base sm:text-lg font-semibold tracking-wide text-[#1d1d1f]">
+                    systemprompts
+                  </span>
+                </div>
+
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                  A database of verified LLM system prompts
+                </h1>
+
+                <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 mb-4">
+                  <div className="w-full sm:max-w-xl">
+                    <SearchBar
+                      value={searchQuery}
+                      onChange={setSearchQuery}
+                      placeholder="Search prompts, tools, categories…"
                     />
                   </div>
-                ))}
+                  <Link
+                    href="/submit"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#1d1d1f] text-white font-medium hover:bg-[#2d2d2f] transition-colors"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add prompt
+                  </Link>
+                </div>
+
               </motion.div>
-            </motion.div>
-          </div>
-        </section>
 
-        {/* Main Content */}
-        <section id="tools" className="max-w-6xl mx-auto px-6 py-16">
-          {/* Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mb-8 space-y-4"
-          >
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 max-w-md">
-                <SearchBar value={searchQuery} onChange={setSearchQuery} />
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="mb-6"
+              >
+                <CategoryFilter
+                  categories={[...categories]}
+                  selected={selectedCategory}
+                  onSelect={setSelectedCategory}
+                />
+              </motion.div>
+
+              <div className="flex items-center justify-between gap-3 mb-5">
+                <p className="text-sm text-[#86868b]">
+                  Showing{' '}
+                  <span className="text-[#1d1d1f] font-medium">
+                    {filteredPrompts.length}
+                  </span>{' '}
+                  items
+                  {selectedCategory && (
+                    <span>
+                      {' '}in{' '}
+                      <span className="text-[#1d1d1f] font-medium">{selectedCategory}</span>
+                    </span>
+                  )}
+                </p>
               </div>
-            </div>
-            <CategoryFilter
-              categories={[...categories]}
-              selected={selectedCategory}
-              onSelect={setSelectedCategory}
-            />
-          </motion.div>
 
-          {/* Results count */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mb-8"
-          >
-            <p className="text-sm text-[#86868b]">
-              Showing <span className="text-[#1d1d1f] font-medium">{filteredTools.length}</span> tools
-              {selectedCategory && (
-                <span>
-                  {' '}in <span className="text-[#1d1d1f] font-medium">{selectedCategory}</span>
-                </span>
+              {loading ? (
+                <div className="flex items-center justify-center py-20">
+                  <Loader2 className="w-8 h-8 animate-spin text-[#86868b]" />
+                </div>
+              ) : loadError ? (
+                <div className="text-center py-16">
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-white/80 backdrop-blur flex items-center justify-center border border-[#d2d2d7]/50">
+                    <span className="text-xl text-[#86868b]">!</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2">Couldn’t load prompts</h3>
+                  <p className="text-[#86868b]">{loadError}</p>
+                </div>
+              ) : (
+                <>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-14 lg:gap-16">
+                    {filteredPrompts.map((prompt, index) => (
+                      <PromptCard key={prompt.id} prompt={prompt} index={index} />
+                    ))}
+                  </div>
+
+                  {filteredPrompts.length === 0 && (
+                    <div className="text-center py-16">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/80 backdrop-blur flex items-center justify-center border border-[#d2d2d7]/50">
+                        <span className="text-xl text-[#86868b]">⌕</span>
+                      </div>
+                      <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2">No matches</h3>
+                      <p className="text-[#86868b]">Try a different search or category.</p>
+                    </div>
+                  )}
+                </>
               )}
-            </p>
-          </motion.div>
-
-          {/* Tools Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTools.map((tool, index) => (
-              <ToolCard key={tool.id} tool={tool} index={index} />
-            ))}
-          </div>
-
-          {/* Empty state */}
-          {filteredTools.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-center py-20"
-            >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/80 backdrop-blur flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="11" cy="11" r="8" stroke="#86868b" strokeWidth="2"/>
-                  <path d="M21 21L16.65 16.65" stroke="#86868b" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2">No tools found</h3>
-              <p className="text-[#86868b]">Try adjusting your search or filter criteria</p>
-            </motion.div>
-          )}
+          </main>
         </section>
 
         {/* Footer */}
         <footer className="border-t border-[#d2d2d7]/50 py-8 backdrop-blur-sm bg-white/30">
-          <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="max-w-7xl mx-auto px-6 text-center">
             <p className="text-sm text-[#86868b]">
               System prompts collected from public sources
             </p>

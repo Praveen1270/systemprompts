@@ -1,188 +1,31 @@
 'use client';
 
-import { useParams } from 'next/navigation';
+import { useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { ArrowLeft, FileText, Wrench, Copy, Check, Loader2 } from 'lucide-react';
 import { getToolById, tools } from '@/data/tools';
 import { useState, useEffect } from 'react';
-
-// Map tool IDs to their actual file paths
-const filePathMap: Record<string, Record<string, string>> = {
-  'cursor': {
-    'Agent Prompt v2.0': 'Cursor Prompts/Agent Prompt 2.0.txt',
-    'Agent Prompt v1.2': 'Cursor Prompts/Agent Prompt v1.2.txt',
-    'Agent Prompt v1.0': 'Cursor Prompts/Agent Prompt v1.0.txt',
-    'Chat Prompt': 'Cursor Prompts/Chat Prompt.txt',
-    'Agent Tools v1.0': 'Cursor Prompts/Agent Tools v1.0.json',
-  },
-  'claude-code': {
-    'Prompt': 'Anthropic/Claude Code/Prompt.txt',
-    'Claude Code 2.0': 'Anthropic/Claude Code 2.0.txt',
-    'Tools': 'Anthropic/Claude Code/Tools.json',
-  },
-  'v0': {
-    'Prompt': 'v0 Prompts and Tools/Prompt.txt',
-    'Tools': 'v0 Prompts and Tools/Tools.json',
-  },
-  'lovable': {
-    'Agent Prompt': 'Lovable/Agent Prompt.txt',
-    'Agent Tools': 'Lovable/Agent Tools.json',
-  },
-  'windsurf': {
-    'Prompt Wave 11': 'Windsurf/Prompt Wave 11.txt',
-    'Tools Wave 11': 'Windsurf/Tools Wave 11.txt',
-  },
-  'devin': {
-    'Prompt': 'Devin AI/Prompt.txt',
-    'DeepWiki Prompt': 'Devin AI/DeepWiki Prompt.txt',
-  },
-  'replit': {
-    'Prompt': 'Replit/Prompt.txt',
-    'Tools': 'Replit/Tools.json',
-  },
-  'augment-code': {
-    'Claude 4 Sonnet Agent Prompts': 'Augment Code/claude-4-sonnet-agent-prompts.txt',
-    'Claude 4 Sonnet Tools': 'Augment Code/claude-4-sonnet-tools.json',
-    'GPT-5 Agent Prompts': 'Augment Code/gpt-5-agent-prompts.txt',
-    'GPT-5 Tools': 'Augment Code/gpt-5-tools.json',
-  },
-  'vscode-agent': {
-    'Prompt': 'VSCode Agent/Prompt.txt',
-    'Claude Sonnet 4': 'VSCode Agent/claude-sonnet-4.txt',
-    'GPT-5': 'VSCode Agent/gpt-5.txt',
-    'GPT-4.1': 'VSCode Agent/gpt-4.1.txt',
-    'Gemini 2.5 Pro': 'VSCode Agent/gemini-2.5-pro.txt',
-  },
-  'manus': {
-    'Prompt': 'Manus Agent Tools & Prompt/Prompt.txt',
-    'Agent Loop': 'Manus Agent Tools & Prompt/Agent loop.txt',
-    'Modules': 'Manus Agent Tools & Prompt/Modules.txt',
-    'Tools': 'Manus Agent Tools & Prompt/tools.json',
-  },
-  'bolt': {
-    'Prompt': 'Open Source prompts/Bolt/Prompt.txt',
-  },
-  'cline': {
-    'Prompt': 'Open Source prompts/Cline/Prompt.txt',
-  },
-  'amp': {
-    'Claude 4 Sonnet': 'Amp/claude-4-sonnet.yaml',
-    'GPT-5': 'Amp/gpt-5.yaml',
-  },
-  'perplexity': {
-    'Prompt': 'Perplexity/Prompt.txt',
-  },
-  'google-gemini': {
-    'AI Studio Vibe Coder': 'Google/Gemini/AI Studio vibe-coder.txt',
-    'Gemini CLI': 'Open Source prompts/Gemini CLI/google-gemini-cli-system-prompt.txt',
-  },
-  'antigravity': {
-    'Fast Prompt': 'Google/Antigravity/Fast Prompt.txt',
-    'Planning Mode': 'Google/Antigravity/planning-mode.txt',
-  },
-  'trae': {
-    'Builder Prompt': 'Trae/Builder Prompt.txt',
-    'Chat Prompt': 'Trae/Chat Prompt.txt',
-    'Builder Tools': 'Trae/Builder Tools.json',
-  },
-  'junie': {
-    'Prompt': 'Junie/Prompt.txt',
-  },
-  'kiro': {
-    'Mode Classifier Prompt': 'Kiro/Mode_Clasifier_Prompt.txt',
-    'Spec Prompt': 'Kiro/Spec_Prompt.txt',
-    'Vibe Prompt': 'Kiro/Vibe_Prompt.txt',
-  },
-  'same-dev': {
-    'Prompt': 'Same.dev/Prompt.txt',
-    'Tools': 'Same.dev/Tools.json',
-  },
-  'leap': {
-    'Prompts': 'Leap.new/Prompts.txt',
-    'Tools': 'Leap.new/tools.json',
-  },
-  'warp': {
-    'Prompt': 'Warp.dev/Prompt.txt',
-  },
-  'codex-cli': {
-    'Prompt': 'Open Source prompts/Codex CLI/Prompt.txt',
-    'System Prompt 2025': 'Open Source prompts/Codex CLI/openai-codex-cli-system-prompt-20250820.txt',
-  },
-  'roocode': {
-    'Prompt': 'Open Source prompts/RooCode/Prompt.txt',
-  },
-  'lumo': {
-    'Prompt': 'Open Source prompts/Lumo/Prompt.txt',
-  },
-  'notion-ai': {
-    'Prompt': 'NotionAi/Prompt.txt',
-    'Tools': 'NotionAi/tools.json',
-  },
-  'xcode': {
-    'System': 'Xcode/System.txt',
-    'Document Action': 'Xcode/DocumentAction.txt',
-    'Explain Action': 'Xcode/ExplainAction.txt',
-    'Message Action': 'Xcode/MessageAction.txt',
-    'Preview Action': 'Xcode/PreviewAction.txt',
-  },
-  'cluely': {
-    'Default Prompt': 'Cluely/Default Prompt.txt',
-    'Enterprise Prompt': 'Cluely/Enterprise Prompt.txt',
-  },
-  'emergent': {
-    'Prompt': 'Emergent/Prompt.txt',
-    'Tools': 'Emergent/Tools.json',
-  },
-  'traycer': {
-    'Phase Mode Prompts': 'Traycer AI/phase_mode_prompts.txt',
-    'Phase Mode Tools': 'Traycer AI/phase_mode_tools.json',
-    'Plan Mode Prompts': 'Traycer AI/plan_mode_prompts',
-    'Plan Mode Tools': 'Traycer AI/plan_mode_tools.json',
-  },
-  'qoder': {
-    'Prompt': 'Qoder/prompt.txt',
-    'Quest Action': 'Qoder/Quest Action.txt',
-    'Quest Design': 'Qoder/Quest Design.txt',
-  },
-  'dia': {
-    'Prompt': 'dia/Prompt.txt',
-  },
-  'comet': {
-    'System Prompt': 'Comet Assistant/System Prompt.txt',
-  },
-  'codebuddy': {
-    'Chat Prompt': 'CodeBuddy Prompts/Chat Prompt.txt',
-    'Craft Prompt': 'CodeBuddy Prompts/Craft Prompt.txt',
-  },
-  'orchids': {
-    'System Prompt': 'Orchids.app/System Prompt.txt',
-    'Decision-making Prompt': 'Orchids.app/Decision-making prompt.txt',
-  },
-  'poke': {
-    'Poke Agent': 'Poke/Poke agent.txt',
-    'Phase 1': 'Poke/Poke_p1.txt',
-    'Phase 2': 'Poke/Poke_p2.txt',
-    'Phase 3': 'Poke/Poke_p3.txt',
-    'Phase 4': 'Poke/Poke_p4.txt',
-    'Phase 5': 'Poke/Poke_p5.txt',
-    'Phase 6': 'Poke/Poke_p6.txt',
-  },
-  'zai-code': {
-    'Prompt': 'Z.ai Code/prompt.txt',
-  },
-};
+import { filePathMap } from '@/data/filePathMap';
+import { formatToolFileTitle } from '@/lib/display';
 
 export default function ToolPage() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const id = params.id as string;
   const tool = getToolById(id);
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const [selectedFile, setSelectedFile] = useState(0);
-  const [content, setContent] = useState<string>('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const initialSelectedFile = (() => {
+    if (!tool) return 0;
+    const requested = searchParams.get('file');
+    if (!requested) return 0;
+    const idx = tool.files.findIndex(f => f.name === requested);
+    return idx >= 0 ? idx : 0;
+  })();
+  const [selectedFile, setSelectedFile] = useState(initialSelectedFile);
+  const [contentByKey, setContentByKey] = useState<Record<string, string>>({});
+  const [errorByKey, setErrorByKey] = useState<Record<string, string>>({});
   const [imageError, setImageError] = useState(false);
 
   // Get the file path
@@ -194,37 +37,40 @@ export default function ToolPage() {
     return null;
   };
 
+  const fileName = tool?.files[selectedFile]?.name;
+  const filePath = fileName ? (filePathMap[id]?.[fileName] ?? null) : null;
+  const currentKey = fileName ? `${id}::${fileName}` : null;
+  const derivedMissingPathError = tool && fileName && !filePath ? 'File path not found' : null;
+  const content = currentKey ? contentByKey[currentKey] ?? '' : '';
+  const error = derivedMissingPathError ?? (currentKey ? errorByKey[currentKey] ?? null : null);
+  const loading =
+    !!tool &&
+    !!filePath &&
+    !!currentKey &&
+    contentByKey[currentKey] === undefined &&
+    errorByKey[currentKey] === undefined;
+
   // Fetch content when selected file changes
   useEffect(() => {
     if (!tool) return;
-    
-    const fileName = tool.files[selectedFile]?.name;
-    const filePath = getFilePath(fileName);
-    
-    if (!filePath) {
-      setError('File path not found');
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
+    if (!filePath) return;
+    if (!currentKey) return;
+    if (contentByKey[currentKey] !== undefined) return;
+    if (errorByKey[currentKey] !== undefined) return;
 
     fetch(`/api/prompt?path=${encodeURIComponent(filePath)}`)
       .then(res => res.json())
       .then(data => {
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setContent(data.content);
+        if (data?.error) {
+          setErrorByKey(prev => ({ ...prev, [currentKey]: data.error }));
+          return;
         }
-        setLoading(false);
+        setContentByKey(prev => ({ ...prev, [currentKey]: data.content ?? '' }));
       })
       .catch(() => {
-        setError('Failed to load content');
-        setLoading(false);
+        setErrorByKey(prev => ({ ...prev, [currentKey]: 'Failed to load content' }));
       });
-  }, [selectedFile, tool, id]);
+  }, [tool, filePath, currentKey, contentByKey, errorByKey]);
 
   if (!tool) {
     return (
@@ -262,7 +108,7 @@ export default function ToolPage() {
       }
       setCopiedIndex(selectedFile);
       setTimeout(() => setCopiedIndex(null), 2000);
-    } catch (err) {
+    } catch {
       // Final fallback - try execCommand
       const textArea = document.createElement('textarea');
       textArea.value = content;
@@ -352,32 +198,69 @@ export default function ToolPage() {
           </div>
         </motion.div>
 
-        {/* Files Tabs */}
+        {/* Files (Card Grid) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mb-6"
+          className="mb-8"
         >
-          <div className="flex flex-wrap gap-2 border-b border-[#d2d2d7] pb-4">
-            {tool.files.map((file, index) => (
-              <button
-                key={file.name}
-                onClick={() => setSelectedFile(index)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
-                  selectedFile === index
-                    ? 'bg-[#1d1d1f] text-white'
-                    : 'bg-[#f5f5f7] text-[#86868b] hover:text-[#1d1d1f] hover:bg-[#e8e8ed]'
-                }`}
-              >
-                {file.type === 'prompt' ? (
-                  <FileText className="w-3.5 h-3.5" />
-                ) : (
-                  <Wrench className="w-3.5 h-3.5" />
-                )}
-                {file.name}
-              </button>
-            ))}
+          <div className="flex items-end justify-between gap-4 mb-4">
+            <div>
+              <h2 className="text-lg font-semibold text-[#1d1d1f]">Prompts & files</h2>
+              <p className="text-sm text-[#86868b]">
+                Pick a file to view. Prompts and tool definitions are shown below.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {tool.files.map((file, index) => {
+              const isSelected = selectedFile === index;
+              const filePath = getFilePath(file.name);
+              const badgeLabel =
+                file.type === 'prompt' ? 'Prompt' : file.type === 'tools' ? 'Tools' : 'File';
+
+              return (
+                <motion.button
+                  key={file.name}
+                  type="button"
+                  onClick={() => setSelectedFile(index)}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  className="text-left"
+                  aria-pressed={isSelected}
+                >
+                  <div className="group relative h-full card-hover">
+                    <div
+                      className={[
+                        'relative h-full bg-white/80 backdrop-blur-sm border rounded-2xl p-5 transition-all duration-300',
+                        isSelected
+                          ? 'border-[#6366f1] ring-2 ring-[#6366f1]/20 bg-white'
+                          : 'border-[#d2d2d7]/50 hover:border-[#86868b] hover:bg-white',
+                      ].join(' ')}
+                    >
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <div className="w-10 h-10 rounded-xl bg-[#f5f5f7] flex items-center justify-center shrink-0">
+                          {file.type === 'prompt' ? (
+                            <FileText className="w-5 h-5 text-[#1d1d1f]" />
+                          ) : (
+                            <Wrench className="w-5 h-5 text-[#1d1d1f]" />
+                          )}
+                        </div>
+                        <span className="text-xs font-medium px-2 py-1 rounded-full bg-[#f5f5f7] text-[#86868b] border border-[#d2d2d7]/60">
+                          {badgeLabel}
+                        </span>
+                      </div>
+
+                      <h3 className="text-base font-semibold text-[#1d1d1f] mb-1 group-hover:text-[#0071e3] transition-colors line-clamp-2">
+                        {formatToolFileTitle(file.name)}
+                      </h3>
+                    </div>
+                  </div>
+                </motion.button>
+              );
+            })}
           </div>
         </motion.div>
 
@@ -397,7 +280,7 @@ export default function ToolPage() {
                   <div className="w-3 h-3 rounded-full bg-[#28c840]" />
                 </div>
                 <span className="text-sm text-[#86868b] font-mono">
-                  {tool.files[selectedFile]?.name}
+                  {formatToolFileTitle(tool.files[selectedFile]?.name ?? '')}
                 </span>
               </div>
               <button
