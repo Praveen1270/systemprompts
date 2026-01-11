@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Check, ChevronDown, Copy, Link2, Share2 } from 'lucide-react';
 import type { PromptIndexItem } from '@/data/promptTypes';
@@ -108,9 +107,8 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: index * 0.03 }}
     >
-      <Link href={deepLinkPath}>
-        <div className="group relative h-full card-hover">
-          <div className="relative h-full rounded-2xl border border-[#d2d2d7]/60 bg-white/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-[#86868b]/60 hover:bg-white/85">
+      <div className="group relative h-full">
+        <div className="relative h-full rounded-2xl border border-[#d2d2d7]/60 bg-white/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-[#86868b]/60 hover:bg-white/85">
             {/* Actions (Copy / Share) */}
             <div className="absolute top-4 right-4 z-10 flex items-center gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
               <button
@@ -181,7 +179,6 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
             </div>
           </div>
         </div>
-      </Link>
     </motion.div>
   );
 }

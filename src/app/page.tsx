@@ -2,8 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Plus, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import PromptCard from '@/components/PromptCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import SearchBar from '@/components/SearchBar';
@@ -57,12 +56,18 @@ export default function Home() {
   }, [items, searchQuery, selectedCategory]);
 
   return (
-    <div className="min-h-screen w-full relative">
-      {/* Radial Gradient Background from Bottom */}
+    <div className="min-h-screen w-full bg-white relative text-gray-800">
+      {/* Circuit Board - Light Pattern */}
       <div
-        className="fixed inset-0 z-0"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(125% 125% at 50% 90%, #fff 35%, #6366f1 100%)',
+          backgroundImage: `
+            repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+            repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
+            radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
+            radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
+          `,
+          backgroundSize: '40px 40px, 40px 40px, 40px 40px, 40px 40px',
         }}
       />
 
@@ -78,7 +83,7 @@ export default function Home() {
               >
                 <div className="flex items-center justify-center text-[#6e6e73] mb-3">
                   <span className="text-base sm:text-lg font-semibold tracking-wide text-[#1d1d1f]">
-                    systemprompts
+                    SystemPrompts
                   </span>
                 </div>
 
@@ -86,21 +91,20 @@ export default function Home() {
                   A database of verified LLM system prompts
                 </h1>
 
-                <div className="flex flex-col sm:flex-row items-stretch justify-center gap-3 mb-4">
-                  <div className="w-full sm:max-w-xl">
-                    <SearchBar
-                      value={searchQuery}
-                      onChange={setSearchQuery}
-                      placeholder="Search prompts, tools, categories…"
-                    />
-                  </div>
-                  <Link
-                    href="/submit"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#1d1d1f] text-white font-medium hover:bg-[#2d2d2f] transition-colors"
-                  >
-                    <Plus className="w-4 h-4" />
-                    Add prompt
-                  </Link>
+                {/* Ad Spots */}
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+                  {[1, 2, 3].map((adNum) => (
+                    <a
+                      key={adNum}
+                      href="https://checkout.dodopayments.com/buy/pdt_0NW3xpuzEUM91giDazqBT?quantity=1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full sm:w-auto sm:flex-1 max-w-xs bg-white rounded-lg border-2 border-dashed border-gray-300 px-6 py-8 text-center hover:border-gray-400 transition-colors cursor-pointer"
+                    >
+                      <p className="text-gray-600 text-sm mb-2">Your ad here</p>
+                      <p className="text-gray-800 text-lg font-semibold">$49/mo</p>
+                    </a>
+                  ))}
                 </div>
 
               </motion.div>
@@ -111,11 +115,20 @@ export default function Home() {
                 transition={{ delay: 0.1 }}
                 className="mb-6"
               >
-                <CategoryFilter
-                  categories={[...categories]}
-                  selected={selectedCategory}
-                  onSelect={setSelectedCategory}
-                />
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                  <CategoryFilter
+                    categories={[...categories]}
+                    selected={selectedCategory}
+                    onSelect={setSelectedCategory}
+                  />
+                  <div className="w-full sm:w-auto sm:flex-1 sm:max-w-md">
+                    <SearchBar
+                      value={searchQuery}
+                      onChange={setSearchQuery}
+                      placeholder="Search prompts, tools, categories…"
+                    />
+                  </div>
+                </div>
               </motion.div>
 
               <div className="flex items-center justify-between gap-3 mb-5">
