@@ -30,6 +30,12 @@ export default function RootLayout({
             gtag('config', 'G-DC4QYX4SH1');
           `}
         </Script>
+        {/* GoatCounter Analytics */}
+        <Script
+          data-goatcounter="https://praveen.goatcounter.com/count"
+          src="//gc.zgo.at/count.js"
+          strategy="afterInteractive"
+        />
         {children}
         <Analytics />
       </body>
