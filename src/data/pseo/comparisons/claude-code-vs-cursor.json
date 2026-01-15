@@ -1,0 +1,168 @@
+{
+  "slug": "claude-code-vs-cursor",
+  "template": "comparison",
+  "category": "comparisons",
+  "categoryName": "Comparisons",
+  "seo": {
+    "title": "Claude Code vs Cursor: 2026 Comparison | Which AI Tool Is Better?",
+    "description": "Compare Claude Code and Cursor in our detailed 2026 comparison. Features, pricing, pros & cons analyzed to help you choose the right AI coding tool.",
+    "canonical": "https://systemprompts.io/compare/claude-code-vs-cursor",
+    "keywords": ["claude code vs cursor", "cursor vs claude code", "ai coding comparison", "best ai code editor"],
+    "intent": "commercial"
+  },
+  "openGraph": {
+    "title": "Claude Code vs Cursor: 2026 Comparison",
+    "description": "Compare Claude Code and Cursor. Features, pricing, and which AI tool is right for you.",
+    "url": "https://systemprompts.io/compare/claude-code-vs-cursor",
+    "siteName": "SystemPrompts",
+    "type": "website"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Claude Code vs Cursor: 2026 Comparison",
+    "description": "Compare Claude Code and Cursor. Features, pricing, and which AI tool is right for you."
+  },
+  "content": {
+    "h1": "Claude Code vs Cursor: Complete Comparison",
+    "intro": "Choosing between Claude Code and Cursor? Both are excellent AI-powered development tools, but they serve different needs. This comprehensive comparison will help you decide which tool is right for your workflow.",
+    "sections": [
+      {
+        "id": "overview",
+        "heading": "Overview",
+        "headingLevel": 2,
+        "content": "Claude Code is Anthropic's agentic coding assistant powered by Claude, focusing on autonomous task completion and deep code understanding. Cursor is an AI-first IDE built on VS Code, emphasizing real-time code generation and multi-file editing within a familiar editor environment."
+      },
+      {
+        "id": "use-cases",
+        "heading": "Best Use Cases",
+        "headingLevel": 2,
+        "content": "Each tool excels in different scenarios. Claude Code is ideal for complex refactoring, autonomous coding tasks, and projects requiring deep reasoning. Cursor shines for interactive development, quick prototyping, and developers who prefer working within a traditional IDE interface."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "which-faster",
+        "question": "Which is faster: Claude Code or Cursor?",
+        "answer": "Cursor typically provides faster real-time completions for inline coding, while Claude Code excels at more complex, multi-step tasks that benefit from deeper reasoning."
+      },
+      {
+        "id": "pricing-difference",
+        "question": "How does pricing compare between Claude Code and Cursor?",
+        "answer": "Both offer free tiers with limited usage. Cursor Pro starts at $20/month, while Claude Code pricing varies based on API usage and Anthropic's subscription tiers."
+      },
+      {
+        "id": "can-use-together",
+        "question": "Can I use Claude Code and Cursor together?",
+        "answer": "Yes! Many developers use both tools. Cursor for daily development and Claude Code for complex refactoring or autonomous tasks."
+      },
+      {
+        "id": "which-beginners",
+        "question": "Which is better for beginners?",
+        "answer": "Cursor may be more approachable for beginners due to its familiar VS Code interface and inline suggestions. Claude Code is excellent for learning but may have a steeper learning curve."
+      }
+    ]
+  },
+  "linking": {
+    "breadcrumbs": [
+      { "label": "Home", "href": "/" },
+      { "label": "Comparisons", "href": "/compare" },
+      { "label": "Claude Code vs Cursor", "href": "/compare/claude-code-vs-cursor", "current": true }
+    ],
+    "relatedPages": ["cursor-vs-windsurf", "claude-code-vs-github-copilot"],
+    "hubLinks": ["compare"]
+  },
+  "schemaTypes": ["WebPage", "BreadcrumbList", "ItemList", "FAQPage"],
+  "comparisonData": {
+    "tool1": {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "slug": "claude-code",
+      "logo": "https://www.anthropic.com/favicon.ico",
+      "pros": [
+        "Exceptional reasoning for complex tasks",
+        "Autonomous multi-step coding",
+        "Deep codebase understanding",
+        "Excellent at refactoring and optimization",
+        "Strong at explaining code decisions"
+      ],
+      "cons": [
+        "Requires API setup or subscription",
+        "May be slower for simple completions",
+        "Less real-time feedback than IDEs"
+      ],
+      "bestFor": "Complex refactoring, autonomous coding tasks, and projects requiring deep reasoning capabilities.",
+      "rating": 4.7
+    },
+    "tool2": {
+      "id": "cursor",
+      "name": "Cursor",
+      "slug": "cursor",
+      "logo": "https://cursor.sh/favicon.ico",
+      "pros": [
+        "Familiar VS Code interface",
+        "Fast inline completions",
+        "Excellent multi-file editing",
+        "Strong VS Code extension support",
+        "Great for real-time development"
+      ],
+      "cons": [
+        "Subscription required for full features",
+        "May use more resources than standard editors",
+        "Learning curve for AI features"
+      ],
+      "bestFor": "Interactive development, quick prototyping, and developers preferring traditional IDE workflow with AI assistance.",
+      "rating": 4.8
+    },
+    "features": [
+      {
+        "name": "Real-time Code Completion",
+        "description": "Inline code suggestions as you type",
+        "tool1Value": "Good",
+        "tool2Value": "Excellent",
+        "winner": "tool2"
+      },
+      {
+        "name": "Complex Task Handling",
+        "description": "Ability to handle multi-step coding tasks",
+        "tool1Value": "Excellent",
+        "tool2Value": "Good",
+        "winner": "tool1"
+      },
+      {
+        "name": "Codebase Understanding",
+        "description": "Understanding of entire project context",
+        "tool1Value": "Excellent",
+        "tool2Value": "Excellent",
+        "winner": "tie"
+      },
+      {
+        "name": "IDE Integration",
+        "description": "Integration with development environment",
+        "tool1Value": "CLI/API",
+        "tool2Value": "Full IDE",
+        "winner": "tool2"
+      },
+      {
+        "name": "Autonomous Coding",
+        "description": "Ability to work independently on tasks",
+        "tool1Value": true,
+        "tool2Value": false,
+        "winner": "tool1"
+      },
+      {
+        "name": "Extension Support",
+        "description": "Support for plugins and extensions",
+        "tool1Value": "Limited",
+        "tool2Value": "VS Code Extensions",
+        "winner": "tool2"
+      }
+    ],
+    "verdict": "Both Claude Code and Cursor are excellent AI coding tools with different strengths. Claude Code excels at autonomous, complex tasks with deep reasoning, while Cursor provides a superior interactive coding experience within a familiar IDE.",
+    "recommendation": "Choose Claude Code if you need an AI that can work autonomously on complex refactoring and multi-step tasks. Choose Cursor if you want AI assistance integrated seamlessly into your daily coding workflow with real-time suggestions and multi-file editing."
+  },
+  "meta": {
+    "createdAt": "2026-01-15T00:00:00.000Z",
+    "updatedAt": "2026-01-15T00:00:00.000Z",
+    "version": 1
+  }
+}

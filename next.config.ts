@@ -1,11 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // ==========================================================================
+  // Turbopack Configuration
+  // ==========================================================================
   turbopack: {
     // Ensure Next picks this repo as the workspace root even if other lockfiles exist nearby.
-    // NOTE: Next loads this config in a Node context where `__dirname` is available.
     root: __dirname,
   },
+  
+  // ==========================================================================
+  // Image Optimization
+  // ==========================================================================
   images: {
     remotePatterns: [
       {
@@ -13,7 +19,140 @@ const nextConfig: NextConfig = {
         hostname: '**',
       },
     ],
+    // Optimize images for performance
+    formats: ['image/avif', 'image/webp'],
+    // Cache optimized images for 60 days
+    minimumCacheTTL: 60 * 60 * 24 * 60,
   },
+  
+  // ==========================================================================
+  // Performance Optimizations for Large-Scale Static Generation
+  // ==========================================================================
+  
+  // Generate standalone output for faster deployments
+  output: 'standalone',
+  
+  // Enable React strict mode for better debugging
+  reactStrictMode: true,
+  
+  // Compress responses
+  compress: true,
+  
+  // Optimize package imports for better tree-shaking
+  experimental: {
+    // Optimize specific large packages
+    optimizePackageImports: [
+      'lucide-react',
+      'framer-motion',
+    ],
+  },
+  
+  // ==========================================================================
+  // Headers for SEO and Security
+  // ==========================================================================
+  async headers() {
+    return [
+      {
+        // Apply to all routes
+        source: '/:path*',
+        headers: [
+          // Security headers
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+          // Permissions Policy
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+        ],
+      },
+      {
+        // Cache static assets aggressively
+        source: '/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        // Cache images
+        source: '/:path*.png',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=604800',
+          },
+        ],
+      },
+      {
+        // Sitemap caching
+        source: '/sitemap.xml',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=3600, stale-while-revalidate=86400',
+          },
+        ],
+      },
+    ];
+  },
+  
+  // ==========================================================================
+  // Redirects for SEO
+  // ==========================================================================
+  async redirects() {
+    return [
+      // Redirect old tool URLs to new structure
+      {
+        source: '/tool/:id',
+        destination: '/tools/:id',
+        permanent: true,
+      },
+      // Ensure trailing slashes are handled consistently
+      {
+        source: '/:path+/',
+        destination: '/:path+',
+        permanent: true,
+      },
+    ];
+  },
+  
+  // ==========================================================================
+  // Rewrites for Clean URLs
+  // ==========================================================================
+  async rewrites() {
+    return {
+      beforeFiles: [],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
+  
+  // ==========================================================================
+  // Logging (reduce in production)
+  // ==========================================================================
+  logging: {
+    fetches: {
+      fullUrl: process.env.NODE_ENV === 'development',
+    },
+  },
+  
+  // ==========================================================================
+  // PoweredBy Header (remove for security)
+  // ==========================================================================
+  poweredByHeader: false,
 };
 
 export default nextConfig;

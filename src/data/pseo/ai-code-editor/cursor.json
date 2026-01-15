@@ -1,0 +1,123 @@
+{
+  "slug": "cursor",
+  "template": "tool",
+  "category": "ai-code-editor",
+  "categoryName": "AI Code Editor",
+  "seo": {
+    "title": "Cursor System Prompt | AI Code Editor Prompts",
+    "description": "Explore Cursor's AI system prompts. Built on VSCode with powerful code generation, multi-file editing, and intelligent assistance.",
+    "canonical": "https://systemprompts.io/tools/ai-code-editor/cursor",
+    "keywords": ["cursor", "cursor ai", "cursor system prompt", "ai code editor", "vscode ai"],
+    "intent": "informational"
+  },
+  "openGraph": {
+    "title": "Cursor System Prompt | AI Code Editor Prompts",
+    "description": "Explore Cursor's AI system prompts. Built on VSCode with powerful code generation.",
+    "url": "https://systemprompts.io/tools/ai-code-editor/cursor",
+    "siteName": "SystemPrompts",
+    "type": "website"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Cursor System Prompt | AI Code Editor",
+    "description": "Explore Cursor's AI system prompts. Built on VSCode with powerful code generation."
+  },
+  "content": {
+    "h1": "Cursor AI System Prompts",
+    "intro": "Cursor is an AI-first code editor built on Visual Studio Code, featuring powerful code generation, intelligent suggestions, and multi-file editing capabilities. Explore the system prompts that power Cursor's AI features.",
+    "sections": [
+      {
+        "id": "overview",
+        "heading": "What is Cursor?",
+        "headingLevel": 2,
+        "content": "Cursor is a revolutionary AI-powered code editor that combines the familiar interface of VS Code with advanced AI capabilities. It enables developers to write code faster through natural language instructions, automated code generation, and intelligent code understanding."
+      },
+      {
+        "id": "features",
+        "heading": "Key Features",
+        "headingLevel": 2,
+        "content": "Cursor offers a comprehensive suite of AI-powered features designed to enhance developer productivity:",
+        "bullets": [
+          "Multi-file editing with AI understanding of your entire codebase",
+          "Natural language to code generation",
+          "Intelligent code completion and suggestions",
+          "Automatic bug fixing and code optimization",
+          "Chat interface for code-related questions"
+        ]
+      },
+      {
+        "id": "prompts",
+        "heading": "Understanding Cursor's System Prompts",
+        "headingLevel": 2,
+        "content": "Cursor's AI capabilities are powered by sophisticated system prompts that guide the underlying language model. These prompts define how Cursor interprets your requests, generates code, and interacts with your codebase. Understanding these prompts can help you leverage Cursor more effectively."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "what-model",
+        "question": "What AI model does Cursor use?",
+        "answer": "Cursor supports multiple AI models including GPT-4, Claude, and other leading language models. Users can choose their preferred model based on their needs and subscription tier."
+      },
+      {
+        "id": "is-free",
+        "question": "Is Cursor free to use?",
+        "answer": "Cursor offers a free tier with limited AI requests per month, plus paid Pro and Business tiers with more features and higher usage limits."
+      },
+      {
+        "id": "vs-copilot",
+        "question": "How does Cursor compare to GitHub Copilot?",
+        "answer": "While both offer AI code assistance, Cursor provides a full IDE experience with features like multi-file editing and codebase understanding that go beyond simple code completion."
+      },
+      {
+        "id": "privacy",
+        "question": "Is my code private when using Cursor?",
+        "answer": "Cursor offers privacy modes and local-first options. You can configure which code is sent to AI models and choose enterprise-grade security options for sensitive projects."
+      }
+    ]
+  },
+  "linking": {
+    "breadcrumbs": [
+      { "label": "Home", "href": "/" },
+      { "label": "Tools", "href": "/tools" },
+      { "label": "AI Code Editor", "href": "/ai-code-editor" },
+      { "label": "Cursor", "href": "/tools/ai-code-editor/cursor", "current": true }
+    ],
+    "relatedPages": ["windsurf", "github-copilot", "trae", "claude-code"],
+    "hubLinks": ["ai-code-editor", "tools"]
+  },
+  "schemaTypes": ["WebPage", "BreadcrumbList", "SoftwareApplication", "FAQPage"],
+  "toolData": {
+    "id": "cursor",
+    "name": "Cursor",
+    "slug": "cursor",
+    "category": "AI Code Editor",
+    "categorySlug": "ai-code-editor",
+    "description": "AI-first code editor built on VSCode with powerful code generation and editing capabilities.",
+    "longDescription": "Cursor is a revolutionary code editor that integrates advanced AI capabilities directly into the development workflow. Built on the foundation of Visual Studio Code, it offers familiar functionality enhanced with intelligent code generation, multi-file editing, and natural language programming.",
+    "logo": "https://cursor.sh/favicon.ico",
+    "website": "https://cursor.sh",
+    "pricing": {
+      "type": "freemium",
+      "startingPrice": "20",
+      "currency": "USD"
+    },
+    "features": [
+      { "name": "Multi-file Editing", "description": "AI understands and edits across multiple files", "available": true },
+      { "name": "Natural Language Coding", "description": "Write code using natural language instructions", "available": true },
+      { "name": "Codebase Understanding", "description": "AI has context of your entire project", "available": true },
+      { "name": "VS Code Extensions", "description": "Compatible with VS Code extension ecosystem", "available": true }
+    ],
+    "files": [
+      { "name": "Agent Prompt v2.0", "type": "prompt" },
+      { "name": "Agent Prompt v1.2", "type": "prompt" },
+      { "name": "Chat Prompt", "type": "prompt" },
+      { "name": "Agent Tools v1.0", "type": "tools" }
+    ],
+    "lastUpdated": "2026-01-15"
+  },
+  "meta": {
+    "createdAt": "2026-01-15T00:00:00.000Z",
+    "updatedAt": "2026-01-15T00:00:00.000Z",
+    "version": 1
+  }
+}

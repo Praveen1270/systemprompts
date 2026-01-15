@@ -1,0 +1,96 @@
+{
+  "slug": "ai-code-editor",
+  "template": "hub",
+  "category": "ai-code-editor",
+  "categoryName": "AI Code Editor",
+  "seo": {
+    "title": "AI Code Editors | AI Tools & System Prompts | SystemPrompts",
+    "description": "Browse the best AI code editors with verified system prompts. Compare Cursor, Windsurf, Trae, and other AI-powered IDEs to find your perfect development tool.",
+    "canonical": "https://systemprompts.io/ai-code-editor",
+    "keywords": ["ai code editor", "ai ide", "cursor", "windsurf", "trae", "ai-powered editor"],
+    "intent": "navigational"
+  },
+  "openGraph": {
+    "title": "AI Code Editors | System Prompts",
+    "description": "Browse the best AI code editors with verified system prompts.",
+    "url": "https://systemprompts.io/ai-code-editor",
+    "siteName": "SystemPrompts",
+    "type": "website"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "AI Code Editors | System Prompts",
+    "description": "Browse the best AI code editors with verified system prompts."
+  },
+  "content": {
+    "h1": "AI Code Editor System Prompts",
+    "intro": "AI Code Editors are full-featured development environments with integrated artificial intelligence. These tools combine the familiarity of traditional IDEs with powerful AI capabilities for code generation, multi-file editing, and intelligent assistance.",
+    "sections": [
+      {
+        "id": "about",
+        "heading": "About AI Code Editors",
+        "headingLevel": 2,
+        "content": "AI Code Editors represent the next evolution of integrated development environments. Unlike simple code completion plugins, these editors deeply understand your codebase and can assist with complex tasks like refactoring, debugging, and generating entire features from natural language descriptions."
+      },
+      {
+        "id": "features",
+        "heading": "Key Features",
+        "headingLevel": 2,
+        "content": "Modern AI code editors typically offer these capabilities:",
+        "bullets": [
+          "Multi-file awareness and editing",
+          "Natural language to code generation",
+          "Intelligent code completion",
+          "Automated bug detection and fixing",
+          "Integration with AI models like GPT-4 and Claude"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "id": "what-are",
+        "question": "What are AI Code Editors?",
+        "answer": "AI Code Editors are development environments that integrate artificial intelligence directly into the coding experience. They offer features like intelligent code completion, natural language programming, and automated refactoring."
+      },
+      {
+        "id": "which-best",
+        "question": "Which AI Code Editor is best?",
+        "answer": "The best AI code editor depends on your needs. Cursor is popular for its VS Code foundation and multi-file editing. Windsurf offers advanced AI understanding. Try several to find your best fit."
+      },
+      {
+        "id": "vs-extensions",
+        "question": "How do AI Code Editors differ from AI extensions?",
+        "answer": "AI Code Editors are purpose-built with AI at their core, offering deeper integration and features like multi-file editing. AI extensions add capabilities to existing editors but may have more limitations."
+      },
+      {
+        "id": "pricing",
+        "question": "Are AI Code Editors free?",
+        "answer": "Most AI code editors offer free tiers with limited AI usage, plus paid plans with more features and higher usage limits. Pricing typically starts around $10-20/month for individual developers."
+      }
+    ]
+  },
+  "linking": {
+    "breadcrumbs": [
+      { "label": "Home", "href": "/" },
+      { "label": "AI Code Editor", "href": "/ai-code-editor", "current": true }
+    ],
+    "relatedPages": ["ai-coding-assistant", "ide-extension", "ai-platform"],
+    "hubLinks": []
+  },
+  "schemaTypes": ["WebPage", "BreadcrumbList", "ItemList", "FAQPage"],
+  "categoryData": {
+    "slug": "ai-code-editor",
+    "name": "AI Code Editor",
+    "description": "Code editors with integrated AI capabilities",
+    "longDescription": "AI Code Editors are full-featured development environments that integrate artificial intelligence directly into the coding experience. These tools go beyond simple code completion to offer multi-file editing, natural language programming, and deep codebase understanding.",
+    "toolCount": 3,
+    "featuredTools": ["cursor", "windsurf", "trae"],
+    "featuredComparisons": ["cursor-vs-windsurf"],
+    "featuredGuides": ["best-ai-coding-tools-2026"]
+  },
+  "meta": {
+    "createdAt": "2026-01-15T00:00:00.000Z",
+    "updatedAt": "2026-01-15T00:00:00.000Z",
+    "version": 1
+  }
+}
