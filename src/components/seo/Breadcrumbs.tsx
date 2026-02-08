@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ChevronRight, Home } from 'lucide-react';
+import { ChevronRight, Home, Slash } from 'lucide-react';
 import type { BreadcrumbItem } from '@/lib/pseo/types';
 
 interface BreadcrumbsProps {
@@ -17,12 +17,12 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
   if (items.length === 0) return null;
 
   return (
-    <nav 
-      aria-label="Breadcrumb" 
-      className={`text-sm ${className}`}
+    <nav
+      aria-label="Breadcrumb"
+      className={`${className} font-technical text-[10px] tracking-[0.2em]`}
     >
-      <ol 
-        className="flex flex-wrap items-center gap-1.5"
+      <ol
+        className="flex flex-wrap items-center gap-2"
         itemScope
         itemType="https://schema.org/BreadcrumbList"
       >
@@ -31,17 +31,17 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
           const isFirst = index === 0;
 
           return (
-            <li 
+            <li
               key={item.href}
-              className="flex items-center gap-1.5"
+              className="flex items-center gap-2 uppercase"
               itemScope
               itemProp="itemListElement"
               itemType="https://schema.org/ListItem"
             >
               {/* Separator */}
               {!isFirst && (
-                <ChevronRight 
-                  className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" 
+                <Slash
+                  className="w-3 h-3 text-text-muted opacity-30"
                   aria-hidden="true"
                 />
               )}
@@ -49,13 +49,13 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
               {/* Breadcrumb link or text */}
               {isLast || item.current ? (
                 <span
-                  className="text-gray-600 font-medium truncate max-w-[200px]"
+                  className="text-accent-primary font-bold"
                   itemProp="name"
                   aria-current="page"
                 >
                   {isFirst ? (
                     <span className="flex items-center gap-1">
-                      <Home className="w-3.5 h-3.5" aria-hidden="true" />
+                      <Home className="w-3 h-3" aria-hidden="true" />
                       <span className="sr-only">{item.label}</span>
                     </span>
                   ) : (
@@ -65,12 +65,12 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
               ) : (
                 <Link
                   href={item.href}
-                  className="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-1 truncate max-w-[200px]"
+                  className="text-text-muted hover:text-text-primary transition-colors flex items-center gap-1"
                   itemProp="item"
                 >
                   {isFirst ? (
                     <>
-                      <Home className="w-3.5 h-3.5" aria-hidden="true" />
+                      <Home className="w-3 h-3" aria-hidden="true" />
                       <span className="sr-only" itemProp="name">{item.label}</span>
                     </>
                   ) : (
@@ -95,26 +95,26 @@ export function Breadcrumbs({ items, className = '' }: BreadcrumbsProps) {
 export function BreadcrumbsCompact({ items, className = '' }: BreadcrumbsProps) {
   if (items.length < 2) return null;
 
-  // Show only parent and current on mobile
   const parent = items[items.length - 2];
-  const current = items[items.length - 1];
 
   return (
-    <nav 
-      aria-label="Breadcrumb" 
-      className={`text-sm ${className}`}
+    <nav
+      aria-label="Breadcrumb"
+      className={`${className} font-technical text-[10px] tracking-widest`}
     >
       <div className="flex items-center gap-1.5">
         <Link
           href={parent.href}
-          className="text-gray-500 hover:text-gray-900 transition-colors flex items-center gap-1"
+          className="text-text-muted hover:text-text-primary transition-colors flex items-center gap-1 uppercase"
         >
-          <ChevronRight className="w-3.5 h-3.5 rotate-180" aria-hidden="true" />
+          <ArrowLeft className="w-3 h-3" aria-hidden="true" />
           <span>{parent.label}</span>
         </Link>
       </div>
     </nav>
   );
 }
+
+import { ArrowLeft } from 'lucide-react';
 
 export default Breadcrumbs;

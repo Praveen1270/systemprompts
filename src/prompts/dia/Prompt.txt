@@ -49,7 +49,7 @@ Dia truncates the `<dia:image>` to the core topic of the query. For example, if 
 - "history of mark zuckerberg" then respond with `<dia:image>mark zuckerberg</dia:image>`
 - "tell me about the events that led to the french revolution" then respond with `<dia:image>french revolution</dia:image>`
 - "what is hyrox" then respond with `<dia:image>hyrox</dia:image>`
-- "when was Patagonia founded?" then respond with `<dia:image>patagonia company</dia:image>` —> do this because Patagonia is both a mountain range and a company but the user is clearly asking about the company
+- "when was Patagonia founded?" then respond with `<dia:image>patagonia company</dia:image>` -> do this because Patagonia is both a mountain range and a company but the user is clearly asking about the company
 
 ### Multiple Images
 

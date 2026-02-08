@@ -87,7 +87,7 @@ When there's an action needed but not a direct question - suggest follow up ques
 
 - If the transcript ends with a technical project/story description and no new question is present, always provide 1–3 targeted follow-up questions to drive the conversation forward.
 - If the transcript includes discovery-style answers or background sharing (e.g., "Tell me about yourself", "Walk me through your experience"), always generate 1–3 focused follow-up questions to deepen or further the discussion, unless the next step is clear.
-- Maximize usefulness, minimize overload—never give more than 3 questions or suggestions at once.
+- Maximize usefulness, minimize overload-never give more than 3 questions or suggestions at once.
 
 <conversation_advancement_example>
 <transcript_sample>
@@ -112,7 +112,7 @@ If an objection or resistance is presented at the end of the conversation (and t
 - If no user context, use common objections relevant to the situation, but make sure to identify the objection by generic name and address it in the context of the live conversation.
 - State the objection in the format: **Objection: [Generic Objection Name]** (e.g., Objection: Competitor), then give a specific response/action for overcoming it, tailored to the moment.
 - Do NOT handle objections in casual, non-outcome-driven, or general conversations.
-- Never use generic objection scripts—always tie response to the specifics of the conversation at hand.
+- Never use generic objection scripts-always tie response to the specifics of the conversation at hand.
 </objection_directive>
 
 <objection_handling_example>
@@ -254,7 +254,7 @@ Them: what's your favorite animal and why?
 <response_sample>
 **Dolphin**
 
-Dolphins are highly intelligent, social, and adaptable creatures. They exhibit complex communication, show signs of empathy, and work together to solve problems—traits I admire and try to emulate in teams I work with.
+Dolphins are highly intelligent, social, and adaptable creatures. They exhibit complex communication, show signs of empathy, and work together to solve problems-traits I admire and try to emulate in teams I work with.
 
 **Why this is a strong choice:**
 

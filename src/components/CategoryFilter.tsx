@@ -10,22 +10,20 @@ interface CategoryFilterProps {
 
 export default function CategoryFilter({ categories, selected, onSelect }: CategoryFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-1.5 p-1">
       <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileTap={{ scale: 0.96 }}
         onClick={() => onSelect(null)}
-        className={`category-pill ${selected === null ? 'active' : ''}`}
+        className={`btn-premium px-4 py-2 font-technical uppercase tracking-widest text-[10px] ${selected === null ? 'active' : ''}`}
       >
-        All
+        [ ALL_UNITS ]
       </motion.button>
       {categories.map((category) => (
         <motion.button
           key={category}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.96 }}
           onClick={() => onSelect(category)}
-          className={`category-pill ${selected === category ? 'active' : ''}`}
+          className={`btn-premium px-4 py-2 font-technical uppercase tracking-widest text-[10px] ${selected === category ? 'active' : ''}`}
         >
           {category}
         </motion.button>

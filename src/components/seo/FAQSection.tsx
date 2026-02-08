@@ -44,7 +44,6 @@ export function FAQSection({
     });
   };
 
-  // Generate FAQ schema
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -59,13 +58,12 @@ export function FAQSection({
   };
 
   return (
-    <section 
-      className={`${className}`} 
+    <section
+      className={`${className}`}
       aria-labelledby="faq-heading"
       itemScope
       itemType="https://schema.org/FAQPage"
     >
-      {/* Schema markup */}
       {includeSchema && (
         <script
           type="application/ld+json"
@@ -73,19 +71,8 @@ export function FAQSection({
         />
       )}
 
-      {/* Header */}
-      <div className="flex items-center gap-2 mb-6">
-        <HelpCircle className="w-6 h-6 text-blue-600" aria-hidden="true" />
-        <h2 
-          id="faq-heading" 
-          className="text-xl font-semibold text-gray-900"
-        >
-          {title}
-        </h2>
-      </div>
-
       {/* FAQ Items */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         {faqs.map((faq) => (
           <FAQItem
             key={faq.id}
@@ -107,8 +94,8 @@ interface FAQItemProps {
 
 function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
   return (
-    <div 
-      className="border border-gray-200 rounded-lg overflow-hidden bg-white"
+    <div
+      className={`glass-panel overflow-hidden transition-all duration-300 ${isOpen ? 'bg-white/[0.04]' : 'bg-white/[0.01]'}`}
       itemScope
       itemProp="mainEntity"
       itemType="https://schema.org/Question"
@@ -117,20 +104,19 @@ function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 p-4 text-left hover:bg-gray-50 transition-colors"
+        className="w-full flex items-center justify-between gap-4 p-6 text-left hover:bg-white/[0.02] transition-colors"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${faq.id}`}
       >
-        <h3 
-          className="font-medium text-gray-900 pr-4"
+        <h3
+          className={`font-semibold text-lg transition-colors ${isOpen ? 'text-accent-primary' : 'text-text-primary'}`}
           itemProp="name"
         >
           {faq.question}
         </h3>
-        <ChevronDown 
-          className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform ${
-            isOpen ? 'rotate-180' : ''
-          }`} 
+        <ChevronDown
+          className={`w-5 h-5 text-text-muted flex-shrink-0 transition-transform duration-500 ${isOpen ? 'rotate-180 text-accent-primary' : ''
+            }`}
           aria-hidden="true"
         />
       </button>
@@ -138,15 +124,14 @@ function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
       {/* Answer */}
       <div
         id={`faq-answer-${faq.id}`}
-        className={`overflow-hidden transition-all duration-200 ${
-          isOpen ? 'max-h-96' : 'max-h-0'
-        }`}
+        className={`transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
         itemScope
         itemProp="acceptedAnswer"
         itemType="https://schema.org/Answer"
       >
-        <div 
-          className="px-4 pb-4 text-gray-600 prose prose-sm max-w-none"
+        <div
+          className="px-6 pb-6 text-text-secondary leading-relaxed max-w-4xl"
           itemProp="text"
         >
           {faq.answer}
@@ -156,9 +141,6 @@ function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
   );
 }
 
-/**
- * Simple FAQ list without accordion (better for SEO crawlability)
- */
 export function FAQList({
   faqs,
   title = 'Frequently Asked Questions',
@@ -181,8 +163,8 @@ export function FAQList({
   };
 
   return (
-    <section 
-      className={`${className}`} 
+    <section
+      className={`${className}`}
       aria-labelledby="faq-list-heading"
     >
       {includeSchema && (
@@ -192,20 +174,20 @@ export function FAQList({
         />
       )}
 
-      <h2 
-        id="faq-list-heading" 
-        className="text-xl font-semibold text-gray-900 mb-6"
+      <h2
+        id="faq-list-heading"
+        className="text-2xl font-bold mb-8 italic font-serif"
       >
         {title}
       </h2>
 
-      <dl className="space-y-6">
+      <dl className="space-y-10">
         {faqs.map((faq) => (
-          <div key={faq.id}>
-            <dt className="font-medium text-gray-900 mb-2">
+          <div key={faq.id} className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-4">
+            <dt className="font-bold text-text-primary">
               {faq.question}
             </dt>
-            <dd className="text-gray-600 pl-4 border-l-2 border-gray-200">
+            <dd className="text-text-secondary pl-6 border-l border-accent-primary/20 leading-relaxed">
               {faq.answer}
             </dd>
           </div>
@@ -215,9 +197,6 @@ export function FAQList({
   );
 }
 
-/**
- * Compact FAQ for sidebars or footers
- */
 export function FAQCompact({
   faqs,
   limit = 5,
@@ -232,11 +211,11 @@ export function FAQCompact({
   if (displayFaqs.length === 0) return null;
 
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-6 ${className}`}>
       {displayFaqs.map((faq) => (
         <div key={faq.id} className="text-sm">
-          <p className="font-medium text-gray-900 mb-1">{faq.question}</p>
-          <p className="text-gray-600 line-clamp-2">{faq.answer}</p>
+          <p className="font-bold text-text-primary mb-2">{faq.question}</p>
+          <p className="text-text-muted line-clamp-3 leading-relaxed">{faq.answer}</p>
         </div>
       ))}
     </div>

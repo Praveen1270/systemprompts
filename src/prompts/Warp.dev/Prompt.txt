@@ -120,7 +120,7 @@ Your current working directory: C:\Users\jmoya\Desktop
 - Absolute path: `/etc/nginx/nginx.conf`, `/usr/local/bin/node`
 
 ### Output Examples
-- "The bug is in `parser.go`—you can trace it to `utils/format.ts` and `../config/settings.json`."
+- "The bug is in `parser.go`-you can trace it to `utils/format.ts` and `../config/settings.json`."
 - "Update `/etc/profile`, then check `scripts/deploy.sh` and `README.md`."
 
 

@@ -7,7 +7,12 @@
     "title": "Best AI Coding Tools 2026 | Complete Guide | SystemPrompts",
     "description": "Discover the best AI coding tools in 2026. Comprehensive guide covering top AI code editors, assistants, and platforms with expert recommendations.",
     "canonical": "https://systemprompts.io/guides/best-ai-coding-tools-2026",
-    "keywords": ["best ai coding tools", "ai code editor", "ai coding assistant", "2026 ai tools"],
+    "keywords": [
+      "best ai coding tools",
+      "ai code editor",
+      "ai coding assistant",
+      "2026 ai tools"
+    ],
     "intent": "informational"
   },
   "openGraph": {
@@ -30,7 +35,7 @@
         "id": "introduction",
         "heading": "The AI Coding Revolution",
         "headingLevel": 2,
-        "content": "The landscape of software development has been revolutionized by AI. In 2026, AI coding tools are no longer experimental—they're essential. Whether you're a solo developer or part of a large enterprise team, AI assistants can significantly boost your productivity and code quality."
+        "content": "The landscape of software development has been revolutionized by AI. In 2026, AI coding tools are no longer experimental - they're essential. Whether you're a solo developer or part of a large enterprise team, AI assistants can significantly boost your productivity and code quality."
       },
       {
         "id": "categories",
@@ -106,18 +111,43 @@
   },
   "linking": {
     "breadcrumbs": [
-      { "label": "Home", "href": "/" },
-      { "label": "Guides", "href": "/guides" },
-      { "label": "Best AI Coding Tools 2026", "href": "/guides/best-ai-coding-tools-2026", "current": true }
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Guides",
+        "href": "/guides"
+      },
+      {
+        "label": "Best AI Coding Tools 2026",
+        "href": "/guides/best-ai-coding-tools-2026",
+        "current": true
+      }
     ],
-    "relatedPages": ["how-to-write-effective-prompts", "choosing-the-right-ai-tool", "ai-coding-best-practices"],
-    "hubLinks": ["guides"],
+    "relatedPages": [
+      "how-to-write-effective-prompts",
+      "choosing-the-right-ai-tool",
+      "ai-coding-best-practices"
+    ],
+    "hubLinks": [
+      "guides"
+    ],
     "siblings": {
       "previous": null,
-      "next": { "slug": "how-to-write-effective-prompts", "title": "How to Write Effective Prompts", "position": 1 }
+      "next": {
+        "slug": "how-to-write-effective-prompts",
+        "title": "How to Write Effective Prompts",
+        "position": 1
+      }
     }
   },
-  "schemaTypes": ["WebPage", "BreadcrumbList", "Article", "FAQPage"],
+  "schemaTypes": [
+    "WebPage",
+    "BreadcrumbList",
+    "Article",
+    "FAQPage"
+  ],
   "guideData": {
     "topic": "Best AI Coding Tools 2026",
     "title": "Best AI Coding Tools in 2026",
@@ -129,14 +159,46 @@
     "updatedAt": "2026-01-15T00:00:00.000Z",
     "readingTime": 12,
     "tableOfContents": [
-      { "id": "introduction", "title": "The AI Coding Revolution", "level": 2 },
-      { "id": "categories", "title": "Categories of AI Coding Tools", "level": 2 },
-      { "id": "top-picks", "title": "Top AI Coding Tools for 2026", "level": 2 },
-      { "id": "cursor", "title": "Cursor", "level": 3 },
-      { "id": "claude-code", "title": "Claude Code", "level": 3 },
-      { "id": "github-copilot", "title": "GitHub Copilot", "level": 3 },
-      { "id": "choosing", "title": "How to Choose the Right Tool", "level": 2 },
-      { "id": "conclusion", "title": "Conclusion", "level": 2 }
+      {
+        "id": "introduction",
+        "title": "The AI Coding Revolution",
+        "level": 2
+      },
+      {
+        "id": "categories",
+        "title": "Categories of AI Coding Tools",
+        "level": 2
+      },
+      {
+        "id": "top-picks",
+        "title": "Top AI Coding Tools for 2026",
+        "level": 2
+      },
+      {
+        "id": "cursor",
+        "title": "Cursor",
+        "level": 3
+      },
+      {
+        "id": "claude-code",
+        "title": "Claude Code",
+        "level": 3
+      },
+      {
+        "id": "github-copilot",
+        "title": "GitHub Copilot",
+        "level": 3
+      },
+      {
+        "id": "choosing",
+        "title": "How to Choose the Right Tool",
+        "level": 2
+      },
+      {
+        "id": "conclusion",
+        "title": "Conclusion",
+        "level": 2
+      }
     ]
   },
   "meta": {

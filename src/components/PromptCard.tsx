@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, ChevronDown, Copy, Link2, Share2 } from 'lucide-react';
+import { Check, ChevronDown, Copy, Link2, Share2, Terminal } from 'lucide-react';
 import type { PromptIndexItem } from '@/data/promptTypes';
 import { formatIndexItemTitle } from '@/lib/display';
 import { useRef, useState } from 'react';
@@ -22,12 +22,10 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
   const deepLinkPath = `/tool/${prompt.toolId}?file=${encodeURIComponent(prompt.title)}`;
 
   const copyToClipboard = async (text: string) => {
-    // Try modern clipboard API first
     if (navigator.clipboard && navigator.clipboard.writeText) {
       await navigator.clipboard.writeText(text);
       return;
     }
-    // Fallback
     const textArea = document.createElement('textarea');
     textArea.value = text;
     textArea.style.position = 'fixed';
@@ -77,8 +75,6 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
       typeof window !== 'undefined' ? `${window.location.origin}${deepLinkPath}` : deepLinkPath;
 
     try {
-      // Prefer Web Share on supported devices
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const navAny = navigator as any;
       if (navAny?.share) {
         await navAny.share({
@@ -89,7 +85,7 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
         return;
       }
     } catch {
-      // fall through to copy-link
+      // ignore
     }
 
     try {
@@ -102,87 +98,88 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, delay: index * 0.03 }}
-    >
-      <div className="group relative h-full">
-        <div className="relative h-full rounded-2xl border border-[#d2d2d7]/60 bg-white/70 backdrop-blur-sm p-6 transition-all duration-300 hover:border-[#86868b]/60 hover:bg-white/85">
-            {/* Actions (Copy / Share) */}
-            <div className="absolute top-4 right-4 z-10 flex items-center gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
-              <button
-                type="button"
-                onClick={handleCopy}
-                aria-label={copyState === 'copied' ? 'Copied' : 'Copy prompt'}
-                className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/70 border border-[#d2d2d7]/70 text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-white transition-colors"
+    <div className="glow-card h-full group">
+      <div className="glass-panel h-full flex flex-col p-6 transition-all duration-500 hover:bg-white/[0.04]">
+        {/* Header Metadata */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent-primary group-hover:animate-pulse" />
+            <span className="font-technical text-[10px] tracking-widest text-text-muted uppercase">
+              {prompt.toolCategory || 'General'}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={handleCopy}
+              className="p-2 rounded-lg bg-white/5 border border-white/5 text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all"
+              title="Copy Sequence"
+            >
+              {copyState === 'copied' ? (
+                <Check className="w-3.5 h-3.5 text-accent-primary" />
+              ) : (
+                <Copy className="w-3.5 h-3.5" />
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={handleShare}
+              className="p-2 rounded-lg bg-white/5 border border-white/5 text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all"
+              title="Share Link"
+            >
+              <Share2 className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Console Preview */}
+        <div className="relative rounded-xl bg-black/40 border border-white/5 p-4 mb-6 flex-1 group/preview overflow-hidden">
+          <div className="absolute top-2 right-2 opacity-0 group-hover/preview:opacity-100 transition-opacity">
+            <Terminal className="w-3 h-3 text-accent-primary/40" />
+          </div>
+          <pre className="text-[11px] leading-relaxed font-technical text-text-secondary whitespace-pre-wrap break-words line-clamp-5 selection:bg-accent-primary/30">
+            {prompt.preview}
+          </pre>
+        </div>
+
+        {/* Content Details */}
+        <div className="mt-auto">
+          <h3 className="text-xl font-bold text-text-primary mb-4 leading-tight group-hover:text-accent-primary transition-colors duration-300">
+            {formatIndexItemTitle(prompt.toolName, prompt.title, prompt.kind)}
+          </h3>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {visibleTags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-0.5 rounded font-technical text-[10px] bg-white/5 border border-white/5 text-text-muted hover:text-accent-primary hover:border-accent-primary/30 transition-colors"
               >
-                {copyState === 'copied' ? (
-                  <Check className="w-4 h-4 text-green-400" />
-                ) : (
-                  <Copy className="w-4 h-4" />
-                )}
-              </button>
-              <button
-                type="button"
-                onClick={handleShare}
-                aria-label={shareState === 'copied' ? 'Link copied' : 'Share prompt'}
-                className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/70 border border-[#d2d2d7]/70 text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-white transition-colors"
-              >
-                {shareState === 'copied' ? <Link2 className="w-4 h-4" /> : <Share2 className="w-4 h-4" />}
-              </button>
-            </div>
+                {tag}
+              </span>
+            ))}
 
-            {/* Preview block */}
-            <div className="rounded-xl border border-[#d2d2d7]/60 bg-white/60 p-4 mb-5 min-h-[120px]">
-              <pre className="text-xs leading-relaxed text-[#6e6e73] whitespace-pre-wrap break-words line-clamp-6">
-                {prompt.preview}
-              </pre>
-            </div>
-
-            {/* Title */}
-            <h3 className="text-lg font-semibold text-[#1d1d1f] mb-4 line-clamp-2">
-              {formatIndexItemTitle(prompt.toolName, prompt.title, prompt.kind)}
-            </h3>
-
-            {/* Tags */}
-            <div className="flex flex-wrap items-center gap-2 text-xs text-[#6e6e73]">
-              {visibleTags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-2 py-1 rounded-full bg-black/5 border border-black/10"
-                >
-                  {tag}
+            {hiddenTags.length > 0 && (
+              <div className="relative group/tags">
+                <span className="cursor-help px-2 py-0.5 rounded font-technical text-[10px] bg-white/5 border border-white/5 text-text-muted">
+                  +{hiddenTags.length}
                 </span>
-              ))}
-
-              {hiddenTags.length > 0 && (
-                <details className="relative">
-                  <summary className="list-none cursor-pointer select-none px-2 py-1 rounded-full bg-black/5 border border-black/10 inline-flex items-center gap-1 hover:bg-black/10 transition-colors">
-                    +{hiddenTags.length} more
-                    <ChevronDown className="w-3.5 h-3.5 opacity-80" />
-                  </summary>
-                  <div className="absolute right-0 mt-2 z-20 w-64 rounded-xl border border-[#d2d2d7]/70 bg-white/90 backdrop-blur p-3 shadow-xl">
-                    <div className="flex flex-wrap gap-2">
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 group-hover/tags:opacity-100 transition-opacity pointer-events-none z-50">
+                  <div className="glass-panel p-3 shadow-2xl bg-bg-elevated/95">
+                    <div className="flex flex-wrap gap-1.5">
                       {hiddenTags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 rounded-full bg-black/5 border border-black/10"
-                        >
+                        <span key={tag} className="text-[9px] font-technical text-text-secondary bg-white/5 px-1.5 py-0.5 rounded">
                           {tag}
                         </span>
                       ))}
                     </div>
                   </div>
-                </details>
-              )}
-            </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
-
-
-
-

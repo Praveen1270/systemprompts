@@ -9,10 +9,10 @@ export function formatIndexItemTitle(toolName: string, fileName: string, kind: P
   const isGenericPrompt = /^prompt$/i.test(n);
   const isGenericTools = /^tools$/i.test(n);
 
-  if (kind === 'prompt' && isGenericPrompt) return `${toolName} — System Prompt`;
-  if (kind === 'tools' && isGenericTools) return `${toolName} — Tools`;
+  if (kind === 'prompt' && isGenericPrompt) return `${toolName} - System Prompt`;
+  if (kind === 'tools' && isGenericTools) return `${toolName} - Tools`;
 
-  return `${toolName} — ${n}`;
+  return `${toolName} - ${n}`;
 }
 
 export function formatToolFileTitle(fileName: string): string {

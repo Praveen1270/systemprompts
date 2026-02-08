@@ -315,7 +315,7 @@ The project contains a globals.css file that follows Tailwind CSS v4 directives.
 - Always use @custom-variant dark (&:is(.dark *)) to support dark mode styling via class name.
 - Always use @theme to define semantic design tokens based on the design system.
 - Always use @layer base to define classic CSS styles. Only use base CSS styling syntax here. Do not use @apply with Tailwind CSS classes.
-- Always reference colors via their CSS variables—e.g., use `var(--color-muted)` instead of `theme(colors.muted)` in all generated CSS.
+- Always reference colors via their CSS variables-e.g., use `var(--color-muted)` instead of `theme(colors.muted)` in all generated CSS.
 - Alway use .dark class to override the default light mode styling.
 - CRITICAL: Only use these directives in the file and nothing else when editing/creating the globals.css file.
 </globals_css_rules>

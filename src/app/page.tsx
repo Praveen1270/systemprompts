@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Loader2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Loader2, Search, Filter, Database, Cpu, Command } from 'lucide-react';
 import PromptCard from '@/components/PromptCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import SearchBar from '@/components/SearchBar';
@@ -29,7 +29,7 @@ export default function Home() {
       })
       .catch(() => {
         if (cancelled) return;
-        setLoadError('Failed to load prompts');
+        setLoadError('Failed to load transmission');
       })
       .finally(() => {
         if (cancelled) return;
@@ -56,140 +56,183 @@ export default function Home() {
   }, [items, searchQuery, selectedCategory]);
 
   return (
-    <div className="min-h-screen w-full bg-white relative text-gray-800">
-      {/* Circuit Board - Light Pattern */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-            repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(75, 85, 99, 0.08) 19px, rgba(75, 85, 99, 0.08) 20px, transparent 20px, transparent 39px, rgba(75, 85, 99, 0.08) 39px, rgba(75, 85, 99, 0.08) 40px),
-            radial-gradient(circle at 20px 20px, rgba(55, 65, 81, 0.12) 2px, transparent 2px),
-            radial-gradient(circle at 40px 40px, rgba(55, 65, 81, 0.12) 2px, transparent 2px)
-          `,
-          backgroundSize: '40px 40px, 40px 40px, 40px 40px, 40px 40px',
-        }}
-      />
+    <div className="min-h-screen w-full relative overflow-hidden">
+      {/* Background Layer */}
+      <div className="mesh-bg" />
+      <div className="noise-overlay" />
 
-      {/* Content */}
-      <div className="relative z-10">
-        <section className="max-w-7xl mx-auto px-6 py-10 lg:py-14">
-          <main className="min-w-0">
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55 }}
-                className="text-center"
-              >
-                <div className="flex items-center justify-center text-[#6e6e73] mb-3">
-                  <span className="text-base sm:text-lg font-semibold tracking-wide text-[#1d1d1f]">
-                    SystemPrompts
-                  </span>
-                </div>
+      {/* Twitter Credit */}
+      <div className="absolute top-0 right-0 p-8 z-20">
+        <a
+          href="https://twitter.com/Praveenthotakur"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-technical text-xs tracking-widest text-text-muted hover:text-accent-primary transition-colors uppercase"
+        >
+          @Praveenthotakur
+        </a>
+      </div>
 
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
-                  A database of verified LLM system prompts
-                </h1>
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 lg:py-24">
+        {/* Hero Section */}
+        <header className="mb-20">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex items-center gap-3 mb-6"
+          >
+            <div className="w-10 h-10 glass-panel flex items-center justify-center border-accent-primary/20 bg-accent-primary/5">
+              <Cpu className="w-5 h-5 text-accent-primary" />
+            </div>
+            <span className="font-technical text-xs tracking-widest text-accent-primary uppercase">
+              Omniscience Archive
+            </span>
+          </motion.div>
 
-                {/* Ad Spots */}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-                  {[1, 2, 3].map((adNum) => (
-                    <a
-                      key={adNum}
-                      href="https://checkout.dodopayments.com/buy/pdt_0NW3xpuzEUM91giDazqBT?quantity=1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto sm:flex-1 max-w-xs bg-white rounded-lg border-2 border-dashed border-gray-300 px-6 py-8 text-center hover:border-gray-400 transition-colors cursor-pointer"
-                    >
-                      <p className="text-gray-600 text-sm mb-2">Your ad here</p>
-                      <p className="text-gray-800 text-lg font-semibold">$49/mo</p>
-                    </a>
-                  ))}
-                </div>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-5xl md:text-7xl font-bold tracking-tight mb-8 max-w-4xl"
+          >
+            The blueprint for <span className="text-accent-primary">artificial intelligence</span>
+          </motion.h1>
 
-              </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl text-text-secondary max-w-2xl mb-12 leading-relaxed"
+          >
+            A high-fidelity database of verified system prompts from the world's most powerful LLMs.
+            Reverse-engineered for clarity and performance.
+          </motion.p>
+        </header>
 
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="mb-6"
-              >
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-                  <CategoryFilter
-                    categories={[...categories]}
-                    selected={selectedCategory}
-                    onSelect={setSelectedCategory}
-                  />
-                  <div className="w-full sm:w-auto sm:flex-1 sm:max-w-md">
-                    <SearchBar
-                      value={searchQuery}
-                      onChange={setSearchQuery}
-                      placeholder="Search prompts, tools, categories…"
-                    />
-                  </div>
-                </div>
-              </motion.div>
+        {/* Controls Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="glass-panel p-2 mb-16 relative overflow-hidden group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-accent-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-              <div className="flex items-center justify-between gap-3 mb-5">
-                <p className="text-sm text-[#86868b]">
-                  Showing{' '}
-                  <span className="text-[#1d1d1f] font-medium">
-                    {filteredPrompts.length}
-                  </span>{' '}
-                  items
-                  {selectedCategory && (
-                    <span>
-                      {' '}in{' '}
-                      <span className="text-[#1d1d1f] font-medium">{selectedCategory}</span>
-                    </span>
-                  )}
-                </p>
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-2">
+            <div className="flex-1 min-w-0">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+                <SearchBar
+                  value={searchQuery}
+                  onChange={setSearchQuery}
+                  placeholder="Query archive..."
+                />
               </div>
+            </div>
 
-              {loading ? (
-                <div className="flex items-center justify-center py-20">
-                  <Loader2 className="w-8 h-8 animate-spin text-[#86868b]" />
-                </div>
-              ) : loadError ? (
-                <div className="text-center py-16">
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-white/80 backdrop-blur flex items-center justify-center border border-[#d2d2d7]/50">
-                    <span className="text-xl text-[#86868b]">!</span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2">Couldn’t load prompts</h3>
-                  <p className="text-[#86868b]">{loadError}</p>
-                </div>
-              ) : (
-                <>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-14 lg:gap-16">
-                    {filteredPrompts.map((prompt, index) => (
-                      <PromptCard key={prompt.id} prompt={prompt} index={index} />
-                    ))}
-                  </div>
+            <div className="h-px lg:w-px lg:h-8 bg-border-subtle mx-2" />
 
-                  {filteredPrompts.length === 0 && (
-                    <div className="text-center py-16">
-                      <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-white/80 backdrop-blur flex items-center justify-center border border-[#d2d2d7]/50">
-                        <span className="text-xl text-[#86868b]">⌕</span>
-                      </div>
-                      <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2">No matches</h3>
-                      <p className="text-[#86868b]">Try a different search or category.</p>
-                    </div>
-                  )}
-                </>
+            <CategoryFilter
+              categories={[...categories]}
+              selected={selectedCategory}
+              onSelect={setSelectedCategory}
+            />
+          </div>
+        </motion.div>
+
+        {/* Results Metadata */}
+        <div className="flex items-center justify-between mb-8 opacity-60">
+          <div className="flex items-center gap-3 font-technical text-xs tracking-wider">
+            <Command className="w-3 h-3" />
+            <span>FOUND {filteredPrompts.length} ENTITIES</span>
+            {selectedCategory && (
+              <>
+                <div className="w-1 h-1 rounded-full bg-accent-primary" />
+                <span className="text-accent-primary">CATEGORY: {selectedCategory}</span>
+              </>
+            )}
+          </div>
+          <div className="hidden md:block w-32 h-px bg-gradient-to-l from-border-subtle to-transparent" />
+        </div>
+
+        {/* Main Content Area */}
+        <main>
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-32 space-y-4">
+              <Loader2 className="w-10 h-10 animate-spin text-accent-primary" />
+              <p className="font-technical text-xs tracking-widest text-text-muted">INITIALIZING TRANSMISSION...</p>
+            </div>
+          ) : loadError ? (
+            <div className="glass-panel py-24 text-center border-red-500/20 bg-red-500/5">
+              <p className="text-red-400 font-technical mb-4">CRITICAL ERROR</p>
+              <h3 className="text-2xl font-bold mb-2">{loadError}</h3>
+              <p className="text-text-secondary">Archive synchronization failed. Re-initiating connection...</p>
+            </div>
+          ) : (
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                layout
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+              >
+                {filteredPrompts.map((prompt, index) => (
+                  <motion.div
+                    key={prompt.id}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                  >
+                    <PromptCard prompt={prompt} index={index} />
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {filteredPrompts.length === 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="py-32 text-center"
+                >
+                  <p className="font-technical text-text-muted mb-4 uppercase tracking-[0.2em]">Zero matches found</p>
+                  <h3 className="text-3xl font-bold text-text-secondary">Null result at current coordinates</h3>
+                  <button
+                    onClick={() => { setSearchQuery(''); setSelectedCategory(null); }}
+                    className="mt-8 btn-premium"
+                  >
+                    Reset Query Parameters
+                  </button>
+                </motion.div>
               )}
-          </main>
-        </section>
+            </AnimatePresence>
+          )}
+        </main>
+      </div>
 
-        {/* Footer */}
-        <footer className="border-t border-[#d2d2d7]/50 py-8 backdrop-blur-sm bg-white/30">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <p className="text-sm text-[#86868b]">
-              System prompts collected from public sources
+      {/* Footer */}
+      <footer className="border-t border-border-subtle py-12 relative z-10 bg-bg-surface/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-accent-primary animate-pulse" />
+            <p className="font-technical text-xs tracking-widest text-text-muted">
+              SYSTEMPROMPTS ARCHIVE // VERIFIED TRANSMISSIONS ONLY
             </p>
           </div>
-        </footer>
-      </div>
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <a
+              href="https://twitter.com/Praveenthotakur"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-technical text-xs tracking-widest text-text-muted hover:text-accent-primary transition-colors"
+            >
+              BY @Praveenthotakur
+            </a>
+            <p className="text-xs text-text-muted">
+              &copy; 2026 ARCHIVE. ALL PROMPTS SOURCED FROM PUBLIC DOMAIN COORDINATES.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

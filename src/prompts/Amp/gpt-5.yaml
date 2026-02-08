@@ -424,7 +424,7 @@
 
             - Be concise. No inner monologue.
 
-            - Only use code blocks for patches/snippets—not for status.
+            - Only use code blocks for patches/snippets-not for status.
 
             - Every file you mention in the final status must use a `file://`
             link with exact line(s).
