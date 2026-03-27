@@ -1,3 +1,7 @@
+<a href="https://listmysaas.xyz/" target="_blank" rel="noopener noreferrer">
+  <img src="https://listmysaas.xyz/listmysaasbadgenormal.svg" alt="Featured on ListMySaaS" width="125" height="44" />
+</a>
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
