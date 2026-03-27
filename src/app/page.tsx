@@ -220,6 +220,20 @@ export default function Home() {
           </div>
           <div className="flex flex-col md:flex-row items-center gap-6">
             <a
+              href="https://listmysaas.xyz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block opacity-90 hover:opacity-100 transition-opacity shrink-0"
+            >
+              <img
+                src="https://listmysaas.xyz/listmysaasbadgenormal.svg"
+                alt="Featured on ListMySaaS"
+                width={125}
+                height={44}
+                className="h-11 w-auto"
+              />
+            </a>
+            <a
               href="https://twitter.com/Praveenthotakur"
               target="_blank"
               rel="noopener noreferrer"
