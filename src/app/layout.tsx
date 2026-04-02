@@ -159,7 +159,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -181,7 +181,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased noise-overlay">
+      <body className="antialiased noise-overlay" suppressHydrationWarning>
         {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DC4QYX4SH1"
@@ -203,6 +203,13 @@ export default function RootLayout({
         />
         {children}
         <Analytics />
+        {/* Apitiny Ads */}
+        <Script
+          src="https://cdn.apitiny.net/scripts/v2.0/main.js"
+          data-site-id="69cebf1cb584038d21b446f1"
+          data-test-mode="false"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

@@ -234,6 +234,20 @@ export default function Home() {
               />
             </a>
             <a
+              href="https://findly.tools/systemprompts?utm_source=systemprompts"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block opacity-90 hover:opacity-100 transition-opacity shrink-0"
+            >
+              <img
+                src="https://findly.tools/badges/findly-tools-badge-light.svg"
+                alt="Featured on Findly.tools"
+                width={175}
+                height={55}
+                className="h-11 w-auto"
+              />
+            </a>
+            <a
               href="https://twitter.com/Praveenthotakur"
               target="_blank"
               rel="noopener noreferrer"
