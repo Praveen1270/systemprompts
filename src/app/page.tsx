@@ -248,6 +248,20 @@ export default function Home() {
               />
             </a>
             <a
+              href="https://www.foundrlist.com/product/systemprompts"
+              target="_blank"
+              rel="nofollow noopener noreferrer"
+              className="inline-block opacity-90 hover:opacity-100 transition-opacity shrink-0"
+            >
+              <img
+                src="https://www.foundrlist.com/api/badge/systemprompts"
+                alt="Live on FoundrList"
+                width={160}
+                height={64}
+                className="h-11 w-auto"
+              />
+            </a>
+            <a
               href="https://twitter.com/Praveenthotakur"
               target="_blank"
               rel="noopener noreferrer"
