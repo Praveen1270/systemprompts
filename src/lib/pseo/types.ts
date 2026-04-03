@@ -388,7 +388,7 @@ export interface PSEOConfig {
 }
 
 export const DEFAULT_PSEO_CONFIG: PSEOConfig = {
-  baseUrl: 'https://systemprompts.io',
+  baseUrl: 'https://systemprompts.fun',
   siteName: 'SystemPrompts',
   defaultOgImage: '/og-default.png',
   minWordCount: 300,

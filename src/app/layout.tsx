@@ -7,7 +7,7 @@ import "./globals.css";
 // Site Configuration
 // =============================================================================
 
-const SITE_URL = "https://systemprompts.io";
+const SITE_URL = "https://systemprompts.fun";
 const SITE_NAME = "SystemPrompts";
 const SITE_DESCRIPTION = "Browse verified system prompts from Cursor, Claude Code, v0, Lovable, Devin, and 50+ more AI tools. Reverse-engineered and ready to use. Free.";
 
