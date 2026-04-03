@@ -6,7 +6,10 @@ import {
   guideTopics, 
   generateComparisonPairs,
   generateComparisonSlug,
-  tools as keywordTools 
+  tools as keywordTools,
+  glossaryTerms,
+  personas,
+  useCases,
 } from '@/data/keyword-matrix';
 
 const BASE_URL = DEFAULT_PSEO_CONFIG.baseUrl;
@@ -97,10 +100,81 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // ==========================================================================
   // Guide Pages
   // ==========================================================================
+
+  entries.push({
+    url: `${BASE_URL}/guides`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  });
   
   for (const topic of guideTopics) {
     entries.push({
       url: `${BASE_URL}/guides/${topic}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  }
+
+  // ==========================================================================
+  // Comparison Hub
+  // ==========================================================================
+
+  entries.push({
+    url: `${BASE_URL}/compare`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  });
+
+  // ==========================================================================
+  // Glossary Pages
+  // ==========================================================================
+
+  entries.push({
+    url: `${BASE_URL}/glossary`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  });
+
+  for (const term of glossaryTerms) {
+    entries.push({
+      url: `${BASE_URL}/glossary/${term.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  }
+
+  // ==========================================================================
+  // Persona Pages
+  // ==========================================================================
+
+  for (const persona of personas) {
+    entries.push({
+      url: `${BASE_URL}/for/${persona.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    });
+  }
+
+  // ==========================================================================
+  // Use Case Pages
+  // ==========================================================================
+
+  entries.push({
+    url: `${BASE_URL}/use-cases`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  });
+
+  for (const useCase of useCases) {
+    entries.push({
+      url: `${BASE_URL}/use-cases/${useCase.slug}`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.7,

@@ -1,0 +1,133 @@
+{
+  "slug": "advanced-prompt-engineering",
+  "template": "guide",
+  "category": "guides",
+  "categoryName": "Guides",
+  "seo": {
+    "title": "Advanced Prompt Engineering Techniques | System Prompt Deep Dive",
+    "description": "Master advanced prompt engineering: chain-of-thought, tool use, agentic prompts, and techniques used in production system prompts from Cursor, Claude Code, and Devin.",
+    "canonical": "https://systemprompts.fun/guides/advanced-prompt-engineering",
+    "keywords": ["advanced prompt engineering", "chain of thought prompting", "agentic prompts", "tool use prompts", "prompt engineering techniques"],
+    "intent": "informational"
+  },
+  "openGraph": {
+    "title": "Advanced Prompt Engineering Techniques | Deep Dive",
+    "description": "Advanced techniques: chain-of-thought, tool use, and agentic prompts from real production AI tool system prompts.",
+    "url": "https://systemprompts.fun/guides/advanced-prompt-engineering",
+    "siteName": "SystemPrompts",
+    "type": "article"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Advanced Prompt Engineering Techniques",
+    "description": "Chain-of-thought, tool use, and agentic prompts from real production system prompts."
+  },
+  "content": {
+    "h1": "Advanced Prompt Engineering Techniques",
+    "intro": "Beyond the basics of clarity and structure, advanced prompt engineering involves techniques that unlock significantly more powerful AI behavior. These techniques are found throughout the system prompts of production AI coding tools — and understanding them helps you build better AI-powered applications.",
+    "sections": [
+      {
+        "id": "chain-of-thought",
+        "heading": "Chain-of-Thought Prompting",
+        "headingLevel": 2,
+        "content": "Chain-of-thought (CoT) prompting instructs the model to reason through a problem step-by-step before producing the final answer. Many production system prompts include phrases like 'Think through this carefully before responding' or 'First analyze the requirements, then plan the implementation, then write the code.' This significantly improves accuracy on complex tasks by forcing the model to decompose the problem before solving it.",
+        "bullets": [
+          "Instruct the model to 'think step by step' or 'reason through this'",
+          "For coding tasks: 'Analyze requirements → Plan approach → Write code → Review'",
+          "Use <thinking> or similar tags to separate reasoning from the final output",
+          "CoT is especially effective for debugging, architecture decisions, and complex refactoring"
+        ]
+      },
+      {
+        "id": "tool-use-prompts",
+        "heading": "Designing Prompts for Tool Use",
+        "headingLevel": 2,
+        "content": "Agentic AI tools like Cursor, Claude Code, and Devin have complex system prompts that define not just what the AI should say, but what tools it can call and how. These prompts include detailed descriptions of each available tool, when to use it, and the expected format for tool calls. The structure matters enormously — vague tool descriptions lead to incorrect tool selection.",
+        "bullets": [
+          "Define each tool with: name, description, when to use it, parameters, and expected output",
+          "Include examples of correct tool call format",
+          "Define priority rules: when multiple tools could work, which takes precedence",
+          "Specify error handling: what to do if a tool returns an error or unexpected result",
+          "Include 'tool not needed' cases to prevent over-calling"
+        ]
+      },
+      {
+        "id": "agentic-prompts",
+        "heading": "Agentic System Prompts",
+        "headingLevel": 2,
+        "content": "Agentic prompts are designed for AI systems that operate autonomously over multiple steps to complete complex tasks. Devin's and Claude Code's system prompts are examples of sophisticated agentic prompts. They include: task decomposition instructions, state management guidance, fallback behaviors, safety constraints, and instructions for when to ask for human input vs. proceed autonomously.",
+        "bullets": [
+          "Define the planning phase: how to break down a task before starting",
+          "Include explicit 'pause and verify' instructions for high-risk operations",
+          "Define what constitutes task completion vs. partial completion",
+          "Specify how to handle ambiguous or contradictory requirements",
+          "Include recovery instructions for when steps fail",
+          "Define human escalation triggers — when to ask for input rather than guess"
+        ]
+      },
+      {
+        "id": "context-management",
+        "heading": "Context Window Management in System Prompts",
+        "headingLevel": 2,
+        "content": "Advanced system prompts account for context window limitations. They include instructions for how to prioritize information when the context gets long, what to summarize vs. retain in full, and how to communicate to users when context limits are approaching. Cursor's system prompt, for example, includes specific instructions for managing long codebases within context constraints."
+      },
+      {
+        "id": "persona-techniques",
+        "heading": "Advanced Persona Design",
+        "headingLevel": 2,
+        "content": "The persona section of a system prompt does more than define a name. Production AI tools use persona design to establish: expertise level (which affects how the AI explains things), communication style (verbose vs. concise), attitude toward uncertainty (confidence level, hedging), and role clarity (what the AI is vs. what it is not). Cursor's prompt explicitly defines that it is an 'AI coding assistant' not a 'general assistant' — a subtle but important distinction that shapes all responses."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "cot-always-better",
+        "question": "Is chain-of-thought prompting always better?",
+        "answer": "No. CoT adds tokens and latency. For simple, factual queries or short code completions, it's unnecessary overhead. Use CoT for complex reasoning tasks: architecture decisions, debugging tricky issues, algorithm design. Many production tools conditionally invoke CoT based on task complexity."
+      },
+      {
+        "id": "tool-use-format",
+        "question": "What format should tool descriptions use in system prompts?",
+        "answer": "Production system prompts typically use a structured format: tool name, one-line description, when to use it (not just what it does), parameter descriptions with types, and a usage example. JSON schema or XML-tagged descriptions are common. The 'when to use' section is critical — without it, models often call tools when simpler approaches would suffice."
+      },
+      {
+        "id": "agentic-safety",
+        "question": "How do production agentic prompts handle safety?",
+        "answer": "Real agentic system prompts (like Devin's and Claude Code's) include explicit safety layers: operations the agent can never perform without confirmation, operations that require summarizing what will happen before proceeding, and hard stops for potentially irreversible actions. The safety instructions are typically the most detailed section of the prompt."
+      }
+    ]
+  },
+  "linking": {
+    "breadcrumbs": [
+      { "label": "Home", "href": "/" },
+      { "label": "Guides", "href": "/guides" },
+      { "label": "Advanced Prompt Engineering", "href": "/guides/advanced-prompt-engineering", "current": true }
+    ],
+    "relatedPages": ["how-to-write-effective-prompts", "ai-coding-best-practices", "future-of-ai-coding"],
+    "hubLinks": ["guides"]
+  },
+  "schemaTypes": ["WebPage", "BreadcrumbList", "Article", "FAQPage"],
+  "guideData": {
+    "topic": "Advanced Prompt Engineering",
+    "title": "Advanced Prompt Engineering Techniques",
+    "subtitle": "Chain-of-thought, tool use, and agentic prompt patterns from production AI tools",
+    "publishedAt": "2026-04-01T00:00:00.000Z",
+    "updatedAt": "2026-04-03T00:00:00.000Z",
+    "readingTime": 12,
+    "author": {
+      "name": "SystemPrompts Archive",
+      "url": "https://systemprompts.fun"
+    },
+    "tableOfContents": [
+      { "id": "chain-of-thought", "title": "Chain-of-Thought Prompting", "level": 2 },
+      { "id": "tool-use-prompts", "title": "Designing Prompts for Tool Use", "level": 2 },
+      { "id": "agentic-prompts", "title": "Agentic System Prompts", "level": 2 },
+      { "id": "context-management", "title": "Context Window Management", "level": 2 },
+      { "id": "persona-techniques", "title": "Advanced Persona Design", "level": 2 }
+    ]
+  },
+  "meta": {
+    "createdAt": "2026-04-01T00:00:00.000Z",
+    "updatedAt": "2026-04-03T00:00:00.000Z",
+    "version": 1
+  }
+}

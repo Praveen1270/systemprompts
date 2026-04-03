@@ -1,0 +1,149 @@
+{
+  "slug": "how-to-write-effective-prompts",
+  "template": "guide",
+  "category": "guides",
+  "categoryName": "Guides",
+  "seo": {
+    "title": "How to Write Effective AI Prompts | Prompt Engineering Guide 2026",
+    "description": "Learn the exact techniques used in production AI tool system prompts to write prompts that get consistent, high-quality results. Based on verified system prompts from Cursor, Claude Code, and more.",
+    "canonical": "https://systemprompts.fun/guides/how-to-write-effective-prompts",
+    "keywords": ["how to write prompts", "prompt engineering guide", "effective AI prompts", "system prompt techniques", "prompt writing best practices"],
+    "intent": "informational"
+  },
+  "openGraph": {
+    "title": "How to Write Effective AI Prompts | Prompt Engineering Guide 2026",
+    "description": "Learn prompt engineering techniques from real production system prompts used by Cursor, Claude Code, and GitHub Copilot.",
+    "url": "https://systemprompts.fun/guides/how-to-write-effective-prompts",
+    "siteName": "SystemPrompts",
+    "type": "article"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "How to Write Effective AI Prompts | Prompt Engineering Guide",
+    "description": "Prompt engineering techniques from real production system prompts used by top AI tools."
+  },
+  "content": {
+    "h1": "How to Write Effective AI Prompts",
+    "intro": "The best way to learn prompt engineering is to study how the professionals do it. We've analyzed the verified system prompts from Cursor, Claude Code, GitHub Copilot, and 50+ other AI tools to extract the patterns and techniques that actually work in production.",
+    "sections": [
+      {
+        "id": "why-prompts-matter",
+        "heading": "Why System Prompts Matter",
+        "headingLevel": 2,
+        "content": "A system prompt is the backbone of every AI tool. It defines the model's persona, capabilities, limitations, and behavior. The difference between a mediocre AI response and an exceptional one often comes down to how well the prompt is written. By studying the system prompts of production AI tools — which represent millions of dollars of engineering effort — you can learn what works."
+      },
+      {
+        "id": "core-principles",
+        "heading": "Core Principles of Effective Prompts",
+        "headingLevel": 2,
+        "content": "Analysis of production system prompts reveals consistent patterns across the best-performing AI tools.",
+        "bullets": [
+          "Be explicit about role and context — tell the model exactly what it is and what environment it operates in",
+          "Define what the model should NOT do as clearly as what it should do",
+          "Use structured formatting (markdown headers, lists) to organize instructions",
+          "Provide concrete examples for ambiguous instructions",
+          "Set output format expectations explicitly",
+          "Layer general rules before specific ones",
+          "Include fallback behaviors for edge cases"
+        ]
+      },
+      {
+        "id": "structure-techniques",
+        "heading": "Structural Techniques from Production Prompts",
+        "headingLevel": 2,
+        "content": "Top AI coding tools structure their system prompts with a clear hierarchy. Cursor's agent prompt, for example, begins with a role definition, then capabilities, then specific behavioral rules, then tool descriptions, and finally output format requirements. This layered structure ensures the model understands its context before processing specific instructions."
+      },
+      {
+        "id": "clarity-techniques",
+        "heading": "Writing for Clarity and Consistency",
+        "headingLevel": 2,
+        "content": "Ambiguity is the enemy of good prompts. Production system prompts use imperative language ('Always return...', 'Never include...', 'When the user asks...') to remove ambiguity. They define terms that could be interpreted multiple ways and use numbered lists for sequential processes.",
+        "bullets": [
+          "Use imperative mood for instructions ('Do X', 'Return Y', 'Never Z')",
+          "Define domain-specific terms the first time they appear",
+          "Use numbered lists for ordered processes",
+          "Use bullet lists for unordered rules",
+          "Separate concerns with clear section headers",
+          "Keep individual instructions atomic — one idea per bullet"
+        ]
+      },
+      {
+        "id": "few-shot-examples",
+        "heading": "Using Examples Effectively",
+        "headingLevel": 2,
+        "content": "Many production system prompts include examples of ideal input/output pairs — a technique called few-shot prompting. This is particularly effective for formatting requirements, where showing is clearer than telling. Claude Code's system prompt, for instance, includes examples of how to format tool call results to avoid common formatting mistakes."
+      },
+      {
+        "id": "common-mistakes",
+        "heading": "Common Prompt Engineering Mistakes",
+        "headingLevel": 2,
+        "content": "Analysis of production prompts also reveals what not to do.",
+        "bullets": [
+          "Vague instructions: 'Be helpful' vs 'When the user asks for code, provide complete, runnable examples'",
+          "Contradictory rules: instructions that conflict create unpredictable behavior",
+          "Over-length: extremely long prompts can dilute instruction weight — prioritize ruthlessly",
+          "Missing edge cases: don't assume the model will figure out ambiguous situations correctly",
+          "No fallback behavior: always define what to do when the normal path fails",
+          "Repeating the obvious: every token in a prompt costs money and dilutes the key instructions"
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "id": "how-long",
+        "question": "How long should a system prompt be?",
+        "answer": "Production system prompts from tools like Cursor and Claude Code range from 5,000 to 50,000+ tokens. For personal or application prompts, keep them as short as possible while being complete. Ruthlessly remove anything that can be inferred. Longer isn't always better — each instruction competes for the model's attention."
+      },
+      {
+        "id": "best-format",
+        "question": "What format works best for system prompts?",
+        "answer": "Markdown with clear headers, numbered lists for processes, and bullet lists for rules. Most production system prompts use this structure. The headers help organize instructions logically; lists make individual rules easy to parse. Avoid walls of prose — they're harder for models to extract specific instructions from."
+      },
+      {
+        "id": "test-prompts",
+        "question": "How do I test if my prompt is effective?",
+        "answer": "Test with edge cases, not just normal cases. The best system prompts handle ambiguity, errors, and unusual requests gracefully. Create a test set of 10-20 diverse inputs including edge cases, and evaluate outputs systematically. Compare outputs before and after each prompt change."
+      },
+      {
+        "id": "study-real-prompts",
+        "question": "Where can I find real system prompts to study?",
+        "answer": "SystemPrompts.fun maintains a database of verified system prompts from 50+ production AI tools including Cursor, Claude Code, GitHub Copilot, v0, and Lovable. Studying these is one of the fastest ways to learn what makes prompts effective in production."
+      }
+    ]
+  },
+  "linking": {
+    "breadcrumbs": [
+      { "label": "Home", "href": "/" },
+      { "label": "Guides", "href": "/guides" },
+      { "label": "How to Write Effective Prompts", "href": "/guides/how-to-write-effective-prompts", "current": true }
+    ],
+    "relatedPages": ["best-ai-coding-tools-2026", "advanced-prompt-engineering", "ai-coding-best-practices"],
+    "hubLinks": ["guides"]
+  },
+  "schemaTypes": ["WebPage", "BreadcrumbList", "Article", "FAQPage"],
+  "guideData": {
+    "topic": "How to Write Effective Prompts",
+    "title": "How to Write Effective AI Prompts",
+    "subtitle": "Prompt engineering techniques learned from production system prompts",
+    "publishedAt": "2026-04-01T00:00:00.000Z",
+    "updatedAt": "2026-04-03T00:00:00.000Z",
+    "readingTime": 10,
+    "author": {
+      "name": "SystemPrompts Archive",
+      "url": "https://systemprompts.fun"
+    },
+    "tableOfContents": [
+      { "id": "why-prompts-matter", "title": "Why System Prompts Matter", "level": 2 },
+      { "id": "core-principles", "title": "Core Principles", "level": 2 },
+      { "id": "structure-techniques", "title": "Structural Techniques", "level": 2 },
+      { "id": "clarity-techniques", "title": "Writing for Clarity", "level": 2 },
+      { "id": "few-shot-examples", "title": "Using Examples", "level": 2 },
+      { "id": "common-mistakes", "title": "Common Mistakes", "level": 2 }
+    ]
+  },
+  "meta": {
+    "createdAt": "2026-04-01T00:00:00.000Z",
+    "updatedAt": "2026-04-03T00:00:00.000Z",
+    "version": 1
+  }
+}
