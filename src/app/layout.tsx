@@ -9,34 +9,41 @@ import "./globals.css";
 
 const SITE_URL = "https://systemprompts.io";
 const SITE_NAME = "SystemPrompts";
-const SITE_DESCRIPTION = "A database of verified LLM system prompts from top AI coding assistants and tools including Cursor, Claude Code, v0, Lovable, Devin, and more.";
+const SITE_DESCRIPTION = "Browse verified system prompts from Cursor, Claude Code, v0, Lovable, Devin, and 50+ more AI tools. Reverse-engineered and ready to use. Free.";
 
 // =============================================================================
 // Metadata
 // =============================================================================
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+
   // Basic metadata
   title: {
-    default: `${SITE_NAME} | A Database of Verified LLM System Prompts`,
+    default: `LLM System Prompts Database | Cursor, Claude Code, v0 & More`,
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
-    "AI prompts",
     "system prompts",
-    "LLM prompts",
-    "AI coding",
-    "Cursor",
-    "Claude Code",
-    "GPT",
-    "AI coding assistant",
-    "AI code editor",
+    "LLM system prompts",
+    "AI system prompts",
+    "Cursor system prompt",
+    "Claude Code system prompt",
+    "v0 system prompt",
+    "Lovable system prompt",
+    "Devin system prompt",
+    "AI coding assistant prompts",
+    "AI prompt database",
+    "AI code editor prompts",
+    "ChatGPT system prompt",
+    "Gemini system prompt",
   ],
   
   // Authors and creator
-  authors: [{ name: SITE_NAME }],
-  creator: SITE_NAME,
+  authors: [{ name: "Praveen Thotakur", url: "https://twitter.com/Praveenthotakur" }],
+  creator: "Praveen Thotakur",
   publisher: SITE_NAME,
   
   // Robots
@@ -67,14 +74,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | A Database of Verified LLM System Prompts`,
+    title: `LLM System Prompts Database | Cursor, Claude Code, v0 & More`,
     description: SITE_DESCRIPTION,
     images: [
       {
         url: `${SITE_URL}/og-default.png`,
         width: 1200,
         height: 630,
-        alt: SITE_NAME,
+        alt: "SystemPrompts – Verified LLM system prompts from Cursor, Claude Code, v0 and more",
       },
     ],
   },
@@ -82,7 +89,9 @@ export const metadata: Metadata = {
   // Twitter
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | A Database of Verified LLM System Prompts`,
+    site: "@Praveenthotakur",
+    creator: "@Praveenthotakur",
+    title: `LLM System Prompts Database | Cursor, Claude Code, v0 & More`,
     description: SITE_DESCRIPTION,
     images: [`${SITE_URL}/og-default.png`],
   },
@@ -125,11 +134,21 @@ const organizationSchema = {
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/logo.png`,
+    width: 512,
+    height: 512,
+  },
   description: SITE_DESCRIPTION,
+  founder: {
+    "@type": "Person",
+    name: "Praveen Thotakur",
+    url: "https://twitter.com/Praveenthotakur",
+  },
   sameAs: [
-    "https://twitter.com/systemprompts",
-    "https://github.com/systemprompts",
+    "https://twitter.com/Praveenthotakur",
+    "https://github.com/Praveen1270",
   ],
 };
 
@@ -164,6 +183,8 @@ export default function RootLayout({
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://cdn.apitiny.net" />
+        <link rel="dns-prefetch" href="https://praveen.goatcounter.com" />
         
         {/* Organization Schema */}
         <script

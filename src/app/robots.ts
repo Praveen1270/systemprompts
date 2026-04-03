@@ -16,6 +16,7 @@ export default function robots(): MetadataRoute.Robots {
           '/private/',
         ],
       },
+      // OpenAI / ChatGPT
       {
         userAgent: 'GPTBot',
         allow: '/',
@@ -24,12 +25,28 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: 'ChatGPT-User',
         allow: '/',
       },
+      // Google Gemini & AI Overviews
       {
         userAgent: 'Google-Extended',
         allow: '/',
       },
+      // Anthropic / Claude
       {
         userAgent: 'anthropic-ai',
+        allow: '/',
+      },
+      {
+        userAgent: 'ClaudeBot',
+        allow: '/',
+      },
+      // Perplexity
+      {
+        userAgent: 'PerplexityBot',
+        allow: '/',
+      },
+      // Microsoft Copilot (via Bing)
+      {
+        userAgent: 'Bingbot',
         allow: '/',
       },
     ],
