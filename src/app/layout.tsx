@@ -104,11 +104,10 @@ export const metadata: Metadata = {
   // Category
   category: "technology",
   
-  // Verification (add your verification codes)
-  // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  // },
+  // Verification
+  verification: {
+    google: "17db6b42b7389378",
+  },
 };
 
 // =============================================================================
