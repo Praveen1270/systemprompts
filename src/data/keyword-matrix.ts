@@ -89,6 +89,21 @@ export const tools: ToolDefinition[] = [
     keywords: ['claude code', 'anthropic claude', 'claude coding', 'claude prompt'],
   },
   {
+    id: 'claude-web',
+    slug: 'claude-web',
+    name: 'Claude (Web)',
+    category: 'AI Chat & Assistant',
+    categorySlug: 'ai-chat-assistant',
+    description: "Anthropic's claude.ai web and app chat (Sonnet 4.6 system prompt).",
+    keywords: [
+      'claude ai',
+      'claude web',
+      'claude sonnet 4.6',
+      'claude system prompt',
+      'anthropic claude chat',
+    ],
+  },
+  {
     id: 'v0',
     slug: 'v0',
     name: 'v0',

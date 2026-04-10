@@ -50,6 +50,15 @@ export const tools: AITool[] = [
     ],
   },
   {
+    id: 'claude-web',
+    name: 'Claude (Web)',
+    category: 'AI Chat & Assistant',
+    description:
+      'Anthropic\'s consumer chat experience on claude.ai and the Claude apps: archived Sonnet 4.6 system prompt (behavior, artifacts, search, and tools).',
+    logo: 'https://www.anthropic.com/favicon.ico',
+    files: [{ name: 'Claude Sonnet 4.6 - Web Chat', content: '', type: 'prompt' }],
+  },
+  {
     id: 'v0',
     name: 'v0',
     category: 'AI Platform',

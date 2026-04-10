@@ -12,6 +12,9 @@ export const filePathMap: Record<string, Record<string, string>> = {
     'Claude Code 2.0': 'Anthropic/Claude Code 2.0.txt',
     Tools: 'Anthropic/Claude Code/Tools.json',
   },
+  'claude-web': {
+    'Claude Sonnet 4.6 - Web Chat': 'Anthropic/Claude Sonnet 4.6 - Web Chat.txt',
+  },
   v0: {
     Prompt: 'v0 Prompts and Tools/Prompt.txt',
     Tools: 'v0 Prompts and Tools/Tools.json',
