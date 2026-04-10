@@ -72,7 +72,7 @@ export function CategoryHubTemplate({
         <div className="mesh-bg" />
         <div className="noise-overlay" />
 
-        <main className="relative z-10 max-w-7xl mx-auto px-6 py-12 lg:py-20">
+        <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-12 lg:py-20">
           {/* Breadcrumbs */}
           <div className="mb-12">
             <Breadcrumbs items={linking.breadcrumbs} className="font-technical text-[10px] tracking-widest text-text-muted transition-colors hover:text-accent-primary" />
@@ -96,7 +96,7 @@ export function CategoryHubTemplate({
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-bold tracking-tight mb-8"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 sm:mb-8 break-words"
             >
               {content.h1}
             </motion.h1>

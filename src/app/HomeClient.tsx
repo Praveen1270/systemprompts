@@ -70,8 +70,8 @@ export default function HomeClient() {
       <div className="mesh-bg" />
       <div className="noise-overlay" />
 
-      {/* Twitter Credit */}
-      <div className="absolute top-0 right-0 p-8 z-20">
+      {/* Twitter Credit — inline on small screens so it does not overlap the hero */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 pt-6 flex justify-end sm:absolute sm:top-0 sm:right-0 sm:pt-8 sm:px-8 lg:px-8">
         <a
           href="https://twitter.com/Praveenthotakur"
           target="_blank"
@@ -82,7 +82,7 @@ export default function HomeClient() {
         </a>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 lg:py-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-24">
         {/* Hero Section — keyword-aligned H1 for programmatic SEO */}
         <header className="mb-12">
           <motion.div
@@ -241,8 +241,8 @@ export default function HomeClient() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-border-subtle py-12 relative z-10 bg-bg-surface/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col gap-10">
+      <footer className="border-t border-border-subtle py-10 sm:py-12 relative z-10 bg-bg-surface/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col gap-10">
           {/* Internal discovery links */}
           <nav aria-label="Site sections" className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-4 sm:gap-x-8 sm:gap-y-2 font-technical text-xs tracking-wider text-text-muted">
             <span className="text-text-primary/90 uppercase">Directory</span>

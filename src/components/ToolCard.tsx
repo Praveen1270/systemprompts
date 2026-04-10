@@ -23,12 +23,11 @@ export default function ToolCard({ tool, index }: ToolCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
     >
-      <Link href={`/tool/${tool.id}`}>
-        <div className="group relative h-full card-hover">
-          <div className="relative h-full bg-white/80 backdrop-blur-sm border border-[#d2d2d7]/50 rounded-2xl p-6 hover:border-[#86868b] hover:bg-white transition-all duration-300">
-            {/* Header */}
-            <div className="flex items-start justify-between mb-4">
-              <div className="w-14 h-14 rounded-xl bg-[#f5f5f7] flex items-center justify-center overflow-hidden">
+      <Link href={`/tool/${tool.id}`} className="block h-full">
+        <div className="group relative h-full glow-card">
+          <div className="relative h-full glass-panel rounded-2xl p-5 sm:p-6 border border-border-subtle transition-all duration-300 hover:bg-white/[0.04] hover:border-accent-primary/25">
+            <div className="flex items-start justify-between gap-3 mb-4">
+              <div className="w-14 h-14 rounded-xl glass-panel flex items-center justify-center overflow-hidden border border-border-subtle bg-white/[0.02]">
                 {!imageError ? (
                   <Image
                     src={tool.logo}
@@ -40,7 +39,7 @@ export default function ToolCard({ tool, index }: ToolCardProps) {
                     unoptimized
                   />
                 ) : (
-                  <span className="text-lg font-bold text-[#1d1d1f]">
+                  <span className="text-lg font-bold text-accent-primary">
                     {tool.name.charAt(0)}
                   </span>
                 )}
@@ -50,30 +49,27 @@ export default function ToolCard({ tool, index }: ToolCardProps) {
               </span>
             </div>
 
-            {/* Content */}
-            <h3 className="text-xl font-semibold text-[#1d1d1f] mb-2 group-hover:text-[#0071e3] transition-colors">
+            <h3 className="text-lg sm:text-xl font-semibold text-text-primary mb-2 group-hover:text-accent-primary transition-colors">
               {tool.name}
             </h3>
-            <p className="text-sm text-[#86868b] mb-4 line-clamp-2">
+            <p className="text-sm text-text-muted mb-4 line-clamp-2 leading-relaxed">
               {tool.description}
             </p>
 
-            {/* Stats */}
-            <div className="flex items-center gap-4 mb-4">
-              <div className="flex items-center gap-1.5 text-xs text-[#86868b]">
-                <FileText className="w-3.5 h-3.5" />
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4">
+              <div className="flex items-center gap-1.5 text-xs text-text-muted">
+                <FileText className="w-3.5 h-3.5 text-accent-primary/80" />
                 <span>{promptCount} prompt{promptCount !== 1 ? 's' : ''}</span>
               </div>
               {toolsCount > 0 && (
-                <div className="flex items-center gap-1.5 text-xs text-[#86868b]">
-                  <Wrench className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-1.5 text-xs text-text-muted">
+                  <Wrench className="w-3.5 h-3.5 text-accent-secondary/80" />
                   <span>{toolsCount} tool{toolsCount !== 1 ? 's' : ''}</span>
                 </div>
               )}
             </div>
 
-            {/* CTA */}
-            <div className="flex items-center gap-2 text-sm font-medium text-[#0071e3] opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="flex items-center gap-2 text-sm font-medium text-accent-primary opacity-0 group-hover:opacity-100 transition-opacity">
               <span>View prompts</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>

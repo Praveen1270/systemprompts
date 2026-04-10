@@ -35,9 +35,9 @@ export function HubLinks({
     <section className={`${className}`} aria-labelledby="hub-links-heading">
       <h2 
         id="hub-links-heading" 
-        className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2"
+        className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2"
       >
-        <Grid3X3 className="w-5 h-5 text-gray-500" aria-hidden="true" />
+        <Grid3X3 className="w-5 h-5 text-accent-primary" aria-hidden="true" />
         {title}
       </h2>
 
@@ -46,17 +46,17 @@ export function HubLinks({
           <Link
             key={link.slug}
             href={`/${link.slug}`}
-            className="group inline-flex items-center gap-2 px-4 py-2.5 bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg transition-colors"
+            className="group inline-flex items-center gap-2 px-4 py-2.5 glass-panel border border-border-subtle rounded-lg hover:border-accent-primary/35 transition-colors"
           >
             <FolderOpen 
-              className="w-4 h-4 text-gray-500 group-hover:text-gray-700" 
+              className="w-4 h-4 text-text-muted group-hover:text-accent-primary" 
               aria-hidden="true"
             />
-            <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+            <span className="text-sm font-medium text-text-secondary group-hover:text-text-primary">
               {link.label}
             </span>
             <ArrowUpRight 
-              className="w-3.5 h-3.5 text-gray-400 group-hover:text-gray-600" 
+              className="w-3.5 h-3.5 text-text-muted group-hover:text-accent-primary" 
               aria-hidden="true"
             />
           </Link>
@@ -72,17 +72,17 @@ export function HubLinks({
 function HubLinksCompact({ links, className = '' }: { links: HubLink[]; className?: string }) {
   return (
     <div className={`flex flex-wrap items-center gap-2 text-sm ${className}`}>
-      <span className="text-gray-500">Categories:</span>
+      <span className="text-text-muted">Categories:</span>
       {links.map((link, index) => (
         <span key={link.slug} className="flex items-center gap-2">
           <Link
             href={`/${link.slug}`}
-            className="text-blue-600 hover:text-blue-800 hover:underline"
+            className="text-accent-primary hover:text-accent-secondary hover:underline transition-colors"
           >
             {link.label}
           </Link>
           {index < links.length - 1 && (
-            <span className="text-gray-300">•</span>
+            <span className="text-border-bright">•</span>
           )}
         </span>
       ))}
@@ -106,7 +106,7 @@ function HubLinksCards({
     <section className={`${className}`} aria-labelledby="hub-cards-heading">
       <h2 
         id="hub-cards-heading" 
-        className="text-xl font-semibold text-gray-900 mb-4"
+        className="text-xl font-semibold text-text-primary mb-4"
       >
         {title}
       </h2>
@@ -116,20 +116,20 @@ function HubLinksCards({
           <Link
             key={link.slug}
             href={`/${link.slug}`}
-            className="group flex items-start gap-4 p-4 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all"
+            className="group flex items-start gap-4 p-4 glass-panel border border-border-subtle rounded-xl hover:border-accent-primary/35 transition-all"
           >
-            <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-accent-primary/10 flex items-center justify-center flex-shrink-0 border border-accent-primary/20">
               <FolderOpen 
-                className="w-5 h-5 text-blue-600" 
+                className="w-5 h-5 text-accent-primary" 
                 aria-hidden="true"
               />
             </div>
             <div className="min-w-0">
-              <h3 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+              <h3 className="font-medium text-text-primary group-hover:text-accent-primary transition-colors">
                 {link.label}
               </h3>
               {link.description && (
-                <p className="text-sm text-gray-500 line-clamp-2 mt-0.5">
+                <p className="text-sm text-text-muted line-clamp-2 mt-0.5">
                   {link.description}
                 </p>
               )}
@@ -156,7 +156,7 @@ export function BackToHub({
   return (
     <Link
       href={href}
-      className={`inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition-colors ${className}`}
+      className={`inline-flex items-center gap-2 text-sm text-text-muted hover:text-accent-primary transition-colors ${className}`}
     >
       <FolderOpen className="w-4 h-4" aria-hidden="true" />
       <span>Back to {label}</span>
@@ -188,8 +188,8 @@ export function CategoryPills({
             href={`${baseHref}/${category.slug}`}
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               isActive
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-accent-primary text-white shadow-[0_0_12px_rgba(59,130,246,0.35)]'
+                : 'bg-white/5 text-text-secondary hover:bg-white/10 border border-border-subtle'
             }`}
             aria-current={isActive ? 'page' : undefined}
           >

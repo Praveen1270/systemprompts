@@ -93,7 +93,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
         <div className="mesh-bg" />
         <div className="noise-overlay" />
 
-        <main className="relative z-10 max-w-4xl mx-auto px-6 py-12 lg:py-20">
+        <main className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-10 sm:py-12 lg:py-20">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs font-technical tracking-wider text-text-muted mb-10">
             <Link href="/" className="hover:text-accent-primary transition-colors">HOME</Link>
@@ -131,9 +131,9 @@ export default async function GlossaryTermPage({ params }: PageProps) {
           </header>
 
           {/* Long definition */}
-          <article className="prose prose-invert prose-lg max-w-none mb-16">
+          <article className="max-w-none mb-16 space-y-4">
             <h2 className="text-2xl font-bold text-text-primary mb-4">Definition & Explanation</h2>
-            <p className="text-text-secondary leading-relaxed text-lg">{entry.longDefinition}</p>
+            <p className="text-text-secondary leading-relaxed text-base md:text-lg">{entry.longDefinition}</p>
           </article>
 
           {/* Related AI Tools */}

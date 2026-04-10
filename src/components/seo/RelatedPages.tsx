@@ -35,7 +35,7 @@ export function RelatedPages({
     <section className={`${className}`} aria-labelledby="related-pages-heading">
       <h2 
         id="related-pages-heading" 
-        className="text-xl font-semibold text-gray-900 mb-6"
+        className="text-xl font-semibold text-text-primary mb-6"
       >
         {title}
       </h2>
@@ -65,29 +65,29 @@ function RelatedPageCard({ page, showDescription = true }: RelatedPageCardProps)
   return (
     <Link
       href={href}
-      className="group block p-4 bg-white border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-sm transition-all"
+      className="group block p-4 glass-panel border border-border-subtle rounded-xl hover:border-accent-primary/35 transition-all"
     >
       <div className="flex items-start justify-between gap-2 mb-2">
         <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${templateBadge.className}`}>
           {templateBadge.label}
         </span>
         <ArrowRight 
-          className="w-4 h-4 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-0.5 transition-all flex-shrink-0" 
+          className="w-4 h-4 text-text-muted group-hover:text-accent-primary group-hover:translate-x-0.5 transition-all flex-shrink-0" 
           aria-hidden="true"
         />
       </div>
 
-      <h3 className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2 mb-1">
+      <h3 className="font-medium text-text-primary group-hover:text-accent-primary transition-colors line-clamp-2 mb-1">
         {page.title}
       </h3>
 
       {showDescription && page.description && (
-        <p className="text-sm text-gray-500 line-clamp-2">
+        <p className="text-sm text-text-muted line-clamp-2">
           {page.description}
         </p>
       )}
 
-      <div className="mt-2 text-xs text-gray-400">
+      <div className="mt-2 text-xs text-text-muted/90">
         {page.category}
       </div>
     </Link>
@@ -110,17 +110,17 @@ export function RelatedLinksInline({
 
   return (
     <div className={`flex flex-wrap items-center gap-2 text-sm ${className}`}>
-      <span className="text-gray-500">{label}</span>
+      <span className="text-text-muted">{label}</span>
       {pages.map((page, index) => (
         <span key={page.slug} className="flex items-center gap-2">
           <Link
             href={getPageHref(page.slug, page.template)}
-            className="text-blue-600 hover:text-blue-800 hover:underline"
+            className="text-accent-primary hover:text-accent-secondary hover:underline transition-colors"
           >
             {page.title}
           </Link>
           {index < pages.length - 1 && (
-            <span className="text-gray-300">•</span>
+            <span className="text-border-bright">•</span>
           )}
         </span>
       ))}
@@ -146,7 +146,7 @@ export function RelatedPagesSidebar({
     <aside className={`${className}`} aria-labelledby="sidebar-related-heading">
       <h3 
         id="sidebar-related-heading" 
-        className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3"
+        className="text-sm font-semibold text-text-muted uppercase tracking-wider mb-3"
       >
         {title}
       </h3>
@@ -155,9 +155,9 @@ export function RelatedPagesSidebar({
           <li key={page.slug}>
             <Link
               href={getPageHref(page.slug, page.template)}
-              className="group flex items-center gap-2 text-sm text-gray-700 hover:text-blue-600 transition-colors"
+              className="group flex items-center gap-2 text-sm text-text-secondary hover:text-accent-primary transition-colors"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-blue-500 transition-colors" />
+              <span className="w-1.5 h-1.5 rounded-full bg-text-muted group-hover:bg-accent-primary transition-colors" />
               <span className="line-clamp-1">{page.title}</span>
             </Link>
           </li>
@@ -174,7 +174,6 @@ export function RelatedPagesSidebar({
 function getPageHref(slug: string, template: PageTemplate): string {
   switch (template) {
     case 'tool':
-      // For tools, slug might include category: "category/tool-slug"
       return slug.includes('/') ? `/tools/${slug}` : `/tools/${slug}`;
     case 'comparison':
       return `/compare/${slug}`;
@@ -190,15 +189,15 @@ function getPageHref(slug: string, template: PageTemplate): string {
 function getTemplateBadge(template: PageTemplate): { label: string; className: string } {
   switch (template) {
     case 'tool':
-      return { label: 'Tool', className: 'bg-blue-50 text-blue-700' };
+      return { label: 'Tool', className: 'bg-accent-primary/15 text-accent-primary border border-accent-primary/25' };
     case 'comparison':
-      return { label: 'Compare', className: 'bg-purple-50 text-purple-700' };
+      return { label: 'Compare', className: 'bg-accent-secondary/15 text-accent-secondary border border-accent-secondary/25' };
     case 'guide':
-      return { label: 'Guide', className: 'bg-green-50 text-green-700' };
+      return { label: 'Guide', className: 'bg-accent-primary/10 text-text-primary border border-border-subtle' };
     case 'hub':
-      return { label: 'Category', className: 'bg-orange-50 text-orange-700' };
+      return { label: 'Category', className: 'bg-white/5 text-text-secondary border border-border-subtle' };
     default:
-      return { label: 'Page', className: 'bg-gray-50 text-gray-700' };
+      return { label: 'Page', className: 'bg-white/5 text-text-muted border border-border-subtle' };
   }
 }
 

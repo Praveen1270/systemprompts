@@ -52,25 +52,27 @@ export function GuideTemplate({ pageData }: GuideTemplateProps) {
         dangerouslySetInnerHTML={{ __html: jsonLd }}
       />
 
-      <div className="min-h-screen bg-white">
-        <main className="max-w-4xl mx-auto px-6 py-12">
+      <div className="page-shell">
+        <div className="mesh-bg" aria-hidden />
+        <div className="noise-overlay" aria-hidden />
+        <main className="page-shell-main max-w-4xl">
           {/* Breadcrumbs */}
-          <Breadcrumbs items={linking.breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={linking.breadcrumbs} className="mb-6 md:mb-8 text-text-muted" />
 
           {/* Article Header */}
-          <header className="mb-10">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+          <header className="mb-8 md:mb-10">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-4 leading-tight">
               {content.h1}
             </h1>
 
             {guideData.subtitle && (
-              <p className="text-xl text-gray-600 mb-6">
+              <p className="text-lg md:text-xl text-text-secondary mb-6">
                 {guideData.subtitle}
               </p>
             )}
 
             {/* Meta */}
-            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 pb-6 border-b border-gray-200">
+            <div className="flex flex-wrap items-center gap-3 md:gap-4 text-sm text-text-muted pb-6 border-b border-border-subtle">
               {guideData.author && (
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4" />
@@ -95,18 +97,18 @@ export function GuideTemplate({ pageData }: GuideTemplateProps) {
           </header>
 
           {/* Two Column Layout */}
-          <div className="lg:grid lg:grid-cols-[1fr_250px] lg:gap-12">
+          <div className="lg:grid lg:grid-cols-[1fr_250px] lg:gap-10 xl:gap-12">
             {/* Main Content */}
-            <article className="prose prose-gray prose-lg max-w-none">
+            <article className="max-w-none text-base md:text-lg leading-relaxed">
               {/* Intro */}
-              <p className="lead text-xl text-gray-600 mb-8">
+              <p className="lead text-lg md:text-xl text-text-secondary mb-8 not-prose">
                 {content.intro}
               </p>
 
               {/* Table of Contents (Mobile) */}
               {guideData.tableOfContents.length > 0 && (
-                <nav className="lg:hidden mb-8 p-4 bg-gray-50 rounded-xl">
-                  <h2 className="text-sm font-semibold text-gray-900 mb-3">
+                <nav className="lg:hidden mb-8 p-4 glass-panel rounded-xl border border-border-subtle not-prose">
+                  <h2 className="text-sm font-semibold text-text-primary mb-3">
                     In this guide
                   </h2>
                   <TableOfContents items={guideData.tableOfContents} />
@@ -117,33 +119,33 @@ export function GuideTemplate({ pageData }: GuideTemplateProps) {
               {content.sections.map((section) => (
                 <section key={section.id} id={section.id} className="scroll-mt-24">
                   {section.headingLevel === 2 && (
-                    <h2 className="text-2xl font-semibold text-gray-900 mt-10 mb-4">
+                    <h2 className="text-2xl font-semibold text-text-primary mt-10 mb-4 not-prose">
                       {section.heading}
                     </h2>
                   )}
                   {section.headingLevel === 3 && (
-                    <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-3">
+                    <h3 className="text-xl font-semibold text-text-primary mt-8 mb-3 not-prose">
                       {section.heading}
                     </h3>
                   )}
                   {section.headingLevel === 4 && (
-                    <h4 className="text-lg font-semibold text-gray-900 mt-6 mb-2">
+                    <h4 className="text-lg font-semibold text-text-primary mt-6 mb-2 not-prose">
                       {section.heading}
                     </h4>
                   )}
 
-                  <p className="text-gray-600 mb-4">{section.content}</p>
+                  <p className="text-text-secondary mb-4 not-prose">{section.content}</p>
 
                   {section.bullets && section.bullets.length > 0 && (
-                    <ul className="space-y-2 mb-4">
+                    <ul className="space-y-2 mb-4 not-prose list-disc pl-5 marker:text-accent-primary">
                       {section.bullets.map((bullet, idx) => (
-                        <li key={idx} className="text-gray-600">{bullet}</li>
+                        <li key={idx} className="text-text-secondary">{bullet}</li>
                       ))}
                     </ul>
                   )}
 
                   {section.code && (
-                    <pre className="bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto text-sm mb-4">
+                    <pre className="code-container text-sm mb-4 overflow-x-auto not-prose">
                       <code className={`language-${section.code.language}`}>
                         {section.code.content}
                       </code>
@@ -158,8 +160,8 @@ export function GuideTemplate({ pageData }: GuideTemplateProps) {
               <div className="sticky top-24 space-y-8">
                 {/* Table of Contents */}
                 {guideData.tableOfContents.length > 0 && (
-                  <nav className="p-4 bg-gray-50 rounded-xl">
-                    <h2 className="text-sm font-semibold text-gray-900 mb-3">
+                  <nav className="p-4 glass-panel rounded-xl border border-border-subtle">
+                    <h2 className="text-sm font-semibold text-text-primary mb-3">
                       In this guide
                     </h2>
                     <TableOfContents items={guideData.tableOfContents} />
@@ -168,11 +170,11 @@ export function GuideTemplate({ pageData }: GuideTemplateProps) {
 
                 {/* Actions */}
                 <div className="flex flex-col gap-2">
-                  <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                  <button type="button" className="flex items-center gap-2 px-4 py-2 text-sm text-text-muted hover:text-text-primary hover:bg-white/5 rounded-lg transition-colors border border-transparent hover:border-border-subtle">
                     <Share2 className="w-4 h-4" />
                     Share
                   </button>
-                  <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
+                  <button type="button" className="flex items-center gap-2 px-4 py-2 text-sm text-text-muted hover:text-text-primary hover:bg-white/5 rounded-lg transition-colors border border-transparent hover:border-border-subtle">
                     <Bookmark className="w-4 h-4" />
                     Save
                   </button>
@@ -192,16 +194,16 @@ export function GuideTemplate({ pageData }: GuideTemplateProps) {
 
           {/* Navigation */}
           {linking.siblings && (
-            <nav className="flex items-center justify-between py-8 border-t border-gray-200 mt-12">
+            <nav className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 py-8 border-t border-border-subtle mt-12">
               {linking.siblings.previous ? (
                 <Link
                   href={`/guides/${linking.siblings.previous.slug}`}
-                  className="group flex items-center gap-2 text-gray-600 hover:text-gray-900"
+                  className="group flex items-center gap-2 text-text-muted hover:text-accent-primary min-w-0"
                 >
-                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                  <div className="text-right">
-                    <div className="text-xs text-gray-400">Previous</div>
-                    <div className="text-sm font-medium">{linking.siblings.previous.title}</div>
+                  <ArrowLeft className="w-4 h-4 shrink-0 group-hover:-translate-x-1 transition-transform" />
+                  <div className="min-w-0 text-left sm:text-right">
+                    <div className="text-xs text-text-muted/80">Previous</div>
+                    <div className="text-sm font-medium text-text-primary truncate">{linking.siblings.previous.title}</div>
                   </div>
                 </Link>
               ) : <div />}
@@ -209,13 +211,13 @@ export function GuideTemplate({ pageData }: GuideTemplateProps) {
               {linking.siblings.next && (
                 <Link
                   href={`/guides/${linking.siblings.next.slug}`}
-                  className="group flex items-center gap-2 text-gray-600 hover:text-gray-900"
+                  className="group flex items-center gap-2 text-text-muted hover:text-accent-primary sm:ml-auto min-w-0"
                 >
-                  <div>
-                    <div className="text-xs text-gray-400">Next</div>
-                    <div className="text-sm font-medium">{linking.siblings.next.title}</div>
+                  <div className="min-w-0 sm:text-right">
+                    <div className="text-xs text-text-muted/80">Next</div>
+                    <div className="text-sm font-medium text-text-primary truncate">{linking.siblings.next.title}</div>
                   </div>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform" />
                 </Link>
               )}
             </nav>
@@ -245,7 +247,7 @@ function TableOfContents({ items }: { items: TableOfContentsItem[] }) {
         >
           <a
             href={`#${item.id}`}
-            className="text-gray-600 hover:text-gray-900 transition-colors line-clamp-1"
+            className="text-text-muted hover:text-accent-primary transition-colors line-clamp-1"
           >
             {item.title}
           </a>

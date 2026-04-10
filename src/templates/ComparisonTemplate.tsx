@@ -58,27 +58,29 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
         dangerouslySetInnerHTML={{ __html: jsonLd }}
       />
 
-      <div className="min-h-screen bg-white">
-        <main className="max-w-6xl mx-auto px-6 py-12">
+      <div className="page-shell">
+        <div className="mesh-bg" aria-hidden />
+        <div className="noise-overlay" aria-hidden />
+        <main className="page-shell-main max-w-6xl">
           {/* Breadcrumbs */}
-          <Breadcrumbs items={linking.breadcrumbs} className="mb-8" />
+          <Breadcrumbs items={linking.breadcrumbs} className="mb-6 md:mb-8 text-text-muted" />
 
           {/* Header */}
-          <header className="text-center mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <header className="text-center mb-10 md:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-text-primary mb-4 px-1">
               {content.h1}
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
               {content.intro}
             </p>
           </header>
 
           {/* Tools Overview */}
-          <section className="grid md:grid-cols-2 gap-8 mb-12">
+          <section className="grid md:grid-cols-2 gap-6 md:gap-8 mb-12">
             {/* Tool 1 */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+            <div className="glass-panel border border-border-subtle rounded-2xl p-5 sm:p-6">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-16 h-16 rounded-xl glass-panel flex items-center justify-center overflow-hidden border border-border-subtle">
                   {!imageError1 && tool1.logo ? (
                     <Image
                       src={tool1.logo}
@@ -90,34 +92,34 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
                       unoptimized
                     />
                   ) : (
-                    <span className="text-xl font-bold text-gray-700">
+                    <span className="text-xl font-bold text-accent-primary">
                       {tool1.name.charAt(0)}
                     </span>
                   )}
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900">{tool1.name}</h2>
+                  <h2 className="text-xl font-semibold text-text-primary">{tool1.name}</h2>
                   {tool1.rating && (
-                    <div className="flex items-center gap-1 text-sm text-gray-500">
-                      <span className="text-yellow-500">★</span>
+                    <div className="flex items-center gap-1 text-sm text-text-muted">
+                      <span className="text-accent-secondary">★</span>
                       {tool1.rating.toFixed(1)}
                     </div>
                   )}
                 </div>
               </div>
 
-              <p className="text-gray-600 mb-4">{tool1.bestFor}</p>
+              <p className="text-text-secondary mb-4">{tool1.bestFor}</p>
 
               {/* Pros */}
               <div className="mb-4">
-                <h3 className="text-sm font-semibold text-green-700 mb-2 flex items-center gap-1">
+                <h3 className="text-sm font-semibold text-accent-primary mb-2 flex items-center gap-1">
                   <ThumbsUp className="w-4 h-4" />
                   Pros
                 </h3>
                 <ul className="space-y-2">
                   {tool1.pros.map((pro, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
-                      <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary">
+                      <Check className="w-4 h-4 text-accent-primary flex-shrink-0 mt-0.5" />
                       {pro}
                     </li>
                   ))}
@@ -126,14 +128,14 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
 
               {/* Cons */}
               <div>
-                <h3 className="text-sm font-semibold text-red-700 mb-2 flex items-center gap-1">
+                <h3 className="text-sm font-semibold text-text-muted mb-2 flex items-center gap-1">
                   <ThumbsDown className="w-4 h-4" />
                   Cons
                 </h3>
                 <ul className="space-y-2">
                   {tool1.cons.map((con, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
-                      <X className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary">
+                      <X className="w-4 h-4 text-text-muted flex-shrink-0 mt-0.5" />
                       {con}
                     </li>
                   ))}
@@ -142,7 +144,7 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
 
               <Link
                 href={`/tools/${tool1.slug}`}
-                className="mt-6 inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
+                className="mt-6 inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary text-sm font-medium transition-colors"
               >
                 View {tool1.name} Prompts
                 <ArrowRight className="w-4 h-4" />
@@ -150,9 +152,9 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
             </div>
 
             {/* Tool 2 */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-6">
+            <div className="glass-panel border border-border-subtle rounded-2xl p-5 sm:p-6">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden">
+                <div className="w-16 h-16 rounded-xl glass-panel flex items-center justify-center overflow-hidden border border-border-subtle">
                   {!imageError2 && tool2.logo ? (
                     <Image
                       src={tool2.logo}
@@ -164,34 +166,34 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
                       unoptimized
                     />
                   ) : (
-                    <span className="text-xl font-bold text-gray-700">
+                    <span className="text-xl font-bold text-accent-primary">
                       {tool2.name.charAt(0)}
                     </span>
                   )}
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900">{tool2.name}</h2>
+                  <h2 className="text-xl font-semibold text-text-primary">{tool2.name}</h2>
                   {tool2.rating && (
-                    <div className="flex items-center gap-1 text-sm text-gray-500">
-                      <span className="text-yellow-500">★</span>
+                    <div className="flex items-center gap-1 text-sm text-text-muted">
+                      <span className="text-accent-secondary">★</span>
                       {tool2.rating.toFixed(1)}
                     </div>
                   )}
                 </div>
               </div>
 
-              <p className="text-gray-600 mb-4">{tool2.bestFor}</p>
+              <p className="text-text-secondary mb-4">{tool2.bestFor}</p>
 
               {/* Pros */}
               <div className="mb-4">
-                <h3 className="text-sm font-semibold text-green-700 mb-2 flex items-center gap-1">
+                <h3 className="text-sm font-semibold text-accent-primary mb-2 flex items-center gap-1">
                   <ThumbsUp className="w-4 h-4" />
                   Pros
                 </h3>
                 <ul className="space-y-2">
                   {tool2.pros.map((pro, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
-                      <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary">
+                      <Check className="w-4 h-4 text-accent-primary flex-shrink-0 mt-0.5" />
                       {pro}
                     </li>
                   ))}
@@ -200,14 +202,14 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
 
               {/* Cons */}
               <div>
-                <h3 className="text-sm font-semibold text-red-700 mb-2 flex items-center gap-1">
+                <h3 className="text-sm font-semibold text-text-muted mb-2 flex items-center gap-1">
                   <ThumbsDown className="w-4 h-4" />
                   Cons
                 </h3>
                 <ul className="space-y-2">
                   {tool2.cons.map((con, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
-                      <X className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
+                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary">
+                      <X className="w-4 h-4 text-text-muted flex-shrink-0 mt-0.5" />
                       {con}
                     </li>
                   ))}
@@ -216,7 +218,7 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
 
               <Link
                 href={`/tools/${tool2.slug}`}
-                className="mt-6 inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium"
+                className="mt-6 inline-flex items-center gap-2 text-accent-primary hover:text-accent-secondary text-sm font-medium transition-colors"
               >
                 View {tool2.name} Prompts
                 <ArrowRight className="w-4 h-4" />
@@ -226,30 +228,30 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
 
           {/* Feature Comparison Table */}
           <section className="mb-12">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+            <h2 className="text-2xl font-semibold text-text-primary mb-6">
               Feature Comparison
             </h2>
-            <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+            <div className="overflow-x-auto -mx-1 px-1">
+              <table className="w-full min-w-[520px] border-collapse text-sm">
                 <thead>
-                  <tr className="bg-gray-50">
-                    <th className="text-left py-4 px-4 font-semibold text-gray-900 border-b">
+                  <tr className="bg-white/[0.03]">
+                    <th className="text-left py-4 px-3 sm:px-4 font-semibold text-text-primary border-b border-border-subtle">
                       Feature
                     </th>
-                    <th className="text-center py-4 px-4 font-semibold text-gray-900 border-b">
+                    <th className="text-center py-4 px-3 sm:px-4 font-semibold text-text-primary border-b border-border-subtle">
                       {tool1.name}
                     </th>
-                    <th className="text-center py-4 px-4 font-semibold text-gray-900 border-b">
+                    <th className="text-center py-4 px-3 sm:px-4 font-semibold text-text-primary border-b border-border-subtle">
                       {tool2.name}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {features.map((feature, idx) => (
-                    <tr key={idx} className="border-b hover:bg-gray-50">
-                      <td className="py-4 px-4">
-                        <div className="font-medium text-gray-900">{feature.name}</div>
-                        <div className="text-sm text-gray-500">{feature.description}</div>
+                    <tr key={idx} className="border-b border-border-subtle hover:bg-white/[0.02]">
+                      <td className="py-4 px-3 sm:px-4 align-top">
+                        <div className="font-medium text-text-primary">{feature.name}</div>
+                        <div className="text-sm text-text-muted">{feature.description}</div>
                       </td>
                       <td className="text-center py-4 px-4">
                         <FeatureValue 
@@ -271,27 +273,27 @@ export function ComparisonTemplate({ pageData }: ComparisonTemplateProps) {
           </section>
 
           {/* Verdict */}
-          <section className="mb-12 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8">
+          <section className="mb-12 glass-panel border border-accent-primary/20 rounded-2xl p-6 sm:p-8 bg-gradient-to-br from-accent-primary/10 via-transparent to-accent-secondary/10">
             <div className="flex items-center gap-3 mb-4">
-              <Trophy className="w-8 h-8 text-yellow-500" />
-              <h2 className="text-2xl font-semibold text-gray-900">Our Verdict</h2>
+              <Trophy className="w-8 h-8 text-accent-primary" />
+              <h2 className="text-2xl font-semibold text-text-primary">Our Verdict</h2>
             </div>
-            <p className="text-lg text-gray-700 mb-4">{verdict}</p>
-            <div className="bg-white/80 rounded-xl p-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Recommendation</h3>
-              <p className="text-gray-600">{recommendation}</p>
+            <p className="text-lg text-text-secondary mb-4 leading-relaxed">{verdict}</p>
+            <div className="glass-panel rounded-xl p-4 border border-border-subtle">
+              <h3 className="font-semibold text-text-primary mb-2">Recommendation</h3>
+              <p className="text-text-secondary">{recommendation}</p>
             </div>
           </section>
 
           {/* Content Sections */}
           {content.sections.length > 0 && (
-            <section className="mb-12 prose prose-gray max-w-none">
+            <section className="mb-12 max-w-none space-y-8">
               {content.sections.map((section) => (
                 <div key={section.id} className="mb-8">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-3">
+                  <h2 className="text-xl font-semibold text-text-primary mb-3">
                     {section.heading}
                   </h2>
-                  <p className="text-gray-600">{section.content}</p>
+                  <p className="text-text-secondary leading-relaxed">{section.content}</p>
                 </div>
               ))}
             </section>
@@ -328,19 +330,19 @@ function FeatureValue({
 }) {
   if (typeof value === 'boolean') {
     return value ? (
-      <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${isWinner ? 'bg-green-100' : 'bg-gray-100'}`}>
-        <Check className={`w-5 h-5 ${isWinner ? 'text-green-600' : 'text-green-500'}`} />
+      <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${isWinner ? 'bg-accent-primary/20' : 'bg-white/5'}`}>
+        <Check className={`w-5 h-5 ${isWinner ? 'text-accent-primary' : 'text-text-muted'}`} />
       </span>
     ) : (
-      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gray-100">
-        <X className="w-5 h-5 text-gray-400" />
+      <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/5">
+        <X className="w-5 h-5 text-text-muted" />
       </span>
     );
   }
 
   return (
-    <span className={`text-sm ${isWinner ? 'font-semibold text-green-700' : 'text-gray-700'}`}>
-      {value || <Minus className="w-4 h-4 text-gray-300 mx-auto" />}
+    <span className={`text-sm ${isWinner ? 'font-semibold text-accent-primary' : 'text-text-secondary'}`}>
+      {value || <Minus className="w-4 h-4 text-text-muted mx-auto" />}
     </span>
   );
 }

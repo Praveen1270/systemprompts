@@ -2,18 +2,32 @@
 
 @import "tailwindcss";
 
+/* Tailwind v4: map CSS variables to utilities (bg-accent-primary, text-text-muted, etc.) */
+@theme inline {
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-bright: var(--border-bright);
+}
+
 :root {
   --bg-base: #030303;
   --bg-surface: #0a0a0b;
   --bg-elevated: #111112;
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --text-muted: #475569;
+  --text-muted: #64748b;
   --accent-primary: #3b82f6;
   --accent-secondary: #8b5cf6;
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --border-bright: rgba(255, 255, 255, 0.1);
-  --glow-color: rgba(59, 130, 246, 0.3);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-bright: rgba(255, 255, 255, 0.12);
+  --glow-color: rgba(59, 130, 246, 0.28);
 }
 
 * {
@@ -30,9 +44,12 @@ body {
   background: var(--bg-base);
   color: var(--text-primary);
   min-height: 100vh;
+  min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  padding-left: env(safe-area-inset-left, 0);
+  padding-right: env(safe-area-inset-right, 0);
 }
 
 /* Base Grain Overlay */
@@ -183,6 +200,22 @@ h1, h2, h3 {
   box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
 }
 
+.category-pill {
+  font-size: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Code Display */
 .code-container {
   background: #0d0d0e;
@@ -191,4 +224,32 @@ h1, h2, h3 {
   font-family: 'JetBrains Mono', monospace;
   padding: 16px;
   color: #e2e8f0;
+}
+
+/* Shared page shell: consistent background on programmatic SEO pages */
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+.page-shell-main {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .page-shell-main {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+  }
 }

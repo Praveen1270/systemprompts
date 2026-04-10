@@ -112,7 +112,7 @@ export default function ToolPage() {
       <div className="mesh-bg" />
       <div className="noise-overlay" />
 
-      <main className="relative z-10 max-w-7xl mx-auto px-6 py-12 lg:py-20">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 lg:py-20">
         {/* Navigation */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -129,7 +129,7 @@ export default function ToolPage() {
         </motion.div>
 
         {/* Header Section */}
-        <header className="mb-20 grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 items-start">
+        <header className="mb-12 sm:mb-16 lg:mb-20 grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-6 lg:gap-8 items-start">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -156,7 +156,7 @@ export default function ToolPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex items-center gap-4 mb-4"
             >
-              <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">{tool.name}</h1>
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight break-words">{tool.name}</h1>
               <div className="px-3 py-1 glass-panel bg-accent-primary/5 border-accent-primary/20 text-accent-primary text-[10px] font-technical tracking-widest uppercase">
                 {tool.category}
               </div>
@@ -191,7 +191,7 @@ export default function ToolPage() {
           </div>
         </header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,380px)_1fr] gap-8 lg:gap-12">
           {/* File Selection Sidebar */}
           <aside className="space-y-6">
             <div className="flex items-center gap-3 mb-4">
@@ -263,7 +263,7 @@ export default function ToolPage() {
               </div>
 
               {/* Viewer */}
-              <div className="p-8 min-h-[500px] relative">
+              <div className="p-4 sm:p-8 min-h-[min(70vh,500px)] sm:min-h-[500px] relative">
                 {loading ? (
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-bg-base/80">
                     <Loader2 className="w-10 h-10 animate-spin text-accent-primary" />

@@ -12,10 +12,10 @@ export default function Header() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-[#d2d2d7]/50"
+      className="sticky top-0 z-50 backdrop-blur-xl bg-bg-base/85 border-b border-border-subtle"
     >
-      <div className="max-w-6xl mx-auto px-6 py-3">
-        <div className="flex items-center justify-center gap-6 overflow-x-auto scrollbar-hide">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 py-2.5 sm:py-3">
+        <div className="flex items-center justify-center gap-3 sm:gap-5 md:gap-6 overflow-x-auto scrollbar-hide pb-0.5 [-webkit-overflow-scrolling:touch]">
           {featuredTools.map((tool, index) => (
             <motion.a
               key={tool.id}
@@ -23,18 +23,18 @@ export default function Header() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.05 }}
-              className="flex items-center gap-2 shrink-0 opacity-70 hover:opacity-100 transition-opacity"
+              className="flex items-center gap-1.5 sm:gap-2 shrink-0 opacity-80 hover:opacity-100 transition-opacity"
               title={tool.name}
             >
               <Image
                 src={tool.logo}
                 alt={tool.name}
-                width={24}
-                height={24}
-                className="object-contain"
+                width={22}
+                height={22}
+                className="object-contain sm:w-6 sm:h-6"
                 unoptimized
               />
-              <span className="text-sm text-[#1d1d1f] font-medium hidden lg:inline">
+              <span className="text-xs sm:text-sm text-text-secondary font-medium hidden sm:inline max-w-[8rem] truncate">
                 {tool.name}
               </span>
             </motion.a>
