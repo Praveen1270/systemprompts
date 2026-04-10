@@ -127,7 +127,7 @@ export const tools: AITool[] = [
     ],
   },
   {
-    id: 'vscode-agent',
+    id: 'github-copilot',
     name: 'GitHub Copilot',
     category: 'IDE Extension',
     description: 'GitHub Copilot\'s agent mode in VS Code with multi-model support.',

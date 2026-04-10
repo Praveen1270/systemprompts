@@ -23,23 +23,32 @@ interface PageProps {
 // Static Generation
 // =============================================================================
 
+function toolCategorySlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/[&]/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 export async function generateStaticParams() {
-  // Try to load from PSEO data first
   const pseoParams = await generateToolStaticParams();
-  
-  if (pseoParams.length > 0) {
-    return pseoParams;
-  }
-  
-  // Fallback: Generate from existing tools data
-  return toolsData.map((tool) => ({
-    category: tool.category
-      .toLowerCase()
-      .replace(/[&]/g, 'and')
-      .replace(/[^a-z0-9]+/g, '-')
-      .replace(/(^-|-$)/g, ''),
+  const fromTools = toolsData.map((tool) => ({
+    category: toolCategorySlug(tool.category),
     slug: tool.id,
   }));
+
+  // Merge PSEO JSON pages with every tool in tools.ts (PSEO alone only listed a subset)
+  const key = (p: { category: string; slug: string }) => `${p.category}:${p.slug}`;
+  const seen = new Set<string>();
+  const merged: Array<{ category: string; slug: string }> = [];
+  for (const p of [...pseoParams, ...fromTools]) {
+    const k = key(p);
+    if (seen.has(k)) continue;
+    seen.add(k);
+    merged.push(p);
+  }
+  return merged;
 }
 
 // =============================================================================

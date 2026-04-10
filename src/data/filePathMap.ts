@@ -41,7 +41,7 @@ export const filePathMap: Record<string, Record<string, string>> = {
     'GPT-5 Agent Prompts': 'Augment Code/gpt-5-agent-prompts.txt',
     'GPT-5 Tools': 'Augment Code/gpt-5-tools.json',
   },
-  'vscode-agent': {
+  'github-copilot': {
     Prompt: 'VSCode Agent/Prompt.txt',
     'Claude Sonnet 4': 'VSCode Agent/claude-sonnet-4.txt',
     'GPT-5': 'VSCode Agent/gpt-5.txt',
