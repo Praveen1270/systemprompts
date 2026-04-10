@@ -1,33 +1,43 @@
 import type { Metadata } from 'next';
 import HomeClient from './HomeClient';
 
-const SITE_URL = 'https://systemprompts.fun';
+const SITE_URL = 'https://www.systemprompts.fun';
 const SITE_NAME = 'SystemPrompts';
+const OG_IMAGE = `${SITE_URL}/og-default.png`;
 
 /** Homepage-specific metadata (merges with root layout). Programmatic SEO: unique title + description for `/`. */
 export const metadata: Metadata = {
-  title: 'LLM System Prompts Database | Cursor, Claude Code, v0 & 50+ Tools',
+  title: 'LLM System Prompts: Cursor, Claude & 50+ Tools',
   description:
-    'Free database of verified LLM system prompts from Cursor, Claude Code, v0, Lovable, Devin, GitHub Copilot, and 50+ AI coding tools. Search, compare, and learn how top products instruct their models.',
+    'Free verified LLM system prompts from Cursor, Claude Code, v0, Lovable, Devin, Copilot, and 50+ tools. Search, compare, and learn how products instruct models.',
   alternates: {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: 'LLM System Prompts Database | Cursor, Claude Code, v0 & 50+ Tools',
+    title: 'LLM System Prompts: Cursor, Claude & 50+ Tools',
     description:
-      'Verified system prompts reverse-engineered from the world’s top AI coding assistants. Guides, glossary, and comparisons included.',
+      'Verified system prompts from top AI coding assistants. Guides, glossary, and comparisons included.',
     url: SITE_URL,
     siteName: SITE_NAME,
     type: 'website',
     locale: 'en_US',
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'SystemPrompts — verified LLM system prompts',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     site: '@Praveenthotakur',
     creator: '@Praveenthotakur',
-    title: 'LLM System Prompts Database | Cursor, Claude Code, v0 & More',
+    title: 'LLM System Prompts: Cursor, Claude & 50+ Tools',
     description:
       'Search verified system prompts from 50+ AI tools. Free archive for developers and prompt engineers.',
+    images: [OG_IMAGE],
   },
 };
 

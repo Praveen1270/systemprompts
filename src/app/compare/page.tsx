@@ -6,17 +6,28 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 
 const BASE_URL = DEFAULT_PSEO_CONFIG.baseUrl;
 const SITE_NAME = DEFAULT_PSEO_CONFIG.siteName;
+const OG_IMAGE = `${BASE_URL}${DEFAULT_PSEO_CONFIG.defaultOgImage}`;
 
 export const metadata: Metadata = {
   title: 'AI Coding Tool Comparisons | Side-by-Side Reviews',
-  description: 'Compare AI coding tools side by side. Cursor vs Claude Code, GitHub Copilot vs Windsurf, and more. See verified system prompts and choose the right tool for your workflow.',
+  description:
+    'Compare AI coding tools: Cursor vs Claude Code, Copilot vs Windsurf, and more. Verified system prompts and feature breakdowns to pick the right workflow.',
   alternates: { canonical: `${BASE_URL}/compare` },
   openGraph: {
     title: 'AI Coding Tool Comparisons | Side-by-Side Reviews',
-    description: 'Head-to-head comparisons of the top AI coding tools. Make an informed decision with verified system prompts and feature breakdowns.',
+    description:
+      'Head-to-head comparisons of top AI coding tools. Verified system prompts and feature breakdowns.',
     type: 'website',
     url: `${BASE_URL}/compare`,
     siteName: SITE_NAME,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'AI coding tool comparisons on SystemPrompts' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Coding Tool Comparisons | Side-by-Side Reviews',
+    description:
+      'Head-to-head comparisons of top AI coding tools. Verified system prompts and feature breakdowns.',
+    images: [OG_IMAGE],
   },
 };
 

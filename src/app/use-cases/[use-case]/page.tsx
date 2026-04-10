@@ -7,6 +7,7 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 
 const BASE_URL = DEFAULT_PSEO_CONFIG.baseUrl;
 const SITE_NAME = DEFAULT_PSEO_CONFIG.siteName;
+const OG_IMAGE = `${BASE_URL}${DEFAULT_PSEO_CONFIG.defaultOgImage}`;
 
 interface PageProps {
   params: Promise<{ 'use-case': string }>;
@@ -31,8 +32,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     keywords: [...entry.keywords, 'AI tools', 'system prompts', entry.name, 'AI coding assistant'],
     alternates: { canonical: url },
-    openGraph: { title, description, type: 'website', url, siteName: SITE_NAME },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url,
+      siteName: SITE_NAME,
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: title }],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE] },
   };
 }
 

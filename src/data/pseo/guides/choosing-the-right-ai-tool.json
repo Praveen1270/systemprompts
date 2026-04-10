@@ -6,14 +6,14 @@
   "seo": {
     "title": "How to Choose the Right AI Coding Tool in 2026",
     "description": "A practical decision framework for choosing between Cursor, Claude Code, GitHub Copilot, Windsurf, and other AI coding tools. Based on tech stack, team size, and workflow.",
-    "canonical": "https://systemprompts.fun/guides/choosing-the-right-ai-tool",
+    "canonical": "https://www.systemprompts.fun/guides/choosing-the-right-ai-tool",
     "keywords": ["choose ai coding tool", "best ai coding assistant 2026", "cursor vs copilot", "which ai tool is best", "ai tool comparison"],
     "intent": "commercial"
   },
   "openGraph": {
     "title": "How to Choose the Right AI Coding Tool in 2026",
     "description": "A practical decision framework for picking between Cursor, Claude Code, GitHub Copilot, Windsurf, and more.",
-    "url": "https://systemprompts.fun/guides/choosing-the-right-ai-tool",
+    "url": "https://www.systemprompts.fun/guides/choosing-the-right-ai-tool",
     "siteName": "SystemPrompts",
     "type": "article"
   },
@@ -126,7 +126,7 @@
     "readingTime": 9,
     "author": {
       "name": "SystemPrompts Archive",
-      "url": "https://systemprompts.fun"
+      "url": "https://www.systemprompts.fun"
     },
     "tableOfContents": [
       { "id": "key-dimensions", "title": "Key Dimensions to Evaluate", "level": 2 },

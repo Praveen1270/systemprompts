@@ -6,17 +6,25 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 
 const BASE_URL = DEFAULT_PSEO_CONFIG.baseUrl;
 const SITE_NAME = DEFAULT_PSEO_CONFIG.siteName;
+const OG_IMAGE = `${BASE_URL}${DEFAULT_PSEO_CONFIG.defaultOgImage}`;
 
 export const metadata: Metadata = {
-  title: 'AI & LLM Glossary | System Prompt & AI Terms Explained',
-  description: `Complete glossary of AI, LLM, and prompt engineering terms. Learn what system prompts, tokens, context windows, AI agents, and more mean. ${glossaryTerms.length}+ terms explained.`,
+  title: 'AI & LLM Glossary | Prompt Terms Explained',
+  description: `Glossary of AI, LLM, and prompt engineering terms—system prompts, tokens, context windows, agents, and more. ${glossaryTerms.length}+ terms explained.`,
   alternates: { canonical: `${BASE_URL}/glossary` },
   openGraph: {
-    title: 'AI & LLM Glossary | System Prompt & AI Terms Explained',
-    description: `${glossaryTerms.length}+ AI and LLM terms explained simply. From system prompts to RAG, context windows to fine-tuning.`,
+    title: 'AI & LLM Glossary | Prompt Terms Explained',
+    description: `${glossaryTerms.length}+ AI and LLM terms explained simply. From system prompts to RAG and context windows.`,
     type: 'website',
     url: `${BASE_URL}/glossary`,
     siteName: SITE_NAME,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'AI and LLM glossary on SystemPrompts' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI & LLM Glossary | Prompt Terms Explained',
+    description: `${glossaryTerms.length}+ AI and LLM terms explained simply. From system prompts to RAG and context windows.`,
+    images: [OG_IMAGE],
   },
 };
 

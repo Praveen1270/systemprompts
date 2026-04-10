@@ -6,14 +6,14 @@
   "seo": {
     "title": "Advanced Prompt Engineering Techniques | System Prompt Deep Dive",
     "description": "Master advanced prompt engineering: chain-of-thought, tool use, agentic prompts, and techniques used in production system prompts from Cursor, Claude Code, and Devin.",
-    "canonical": "https://systemprompts.fun/guides/advanced-prompt-engineering",
+    "canonical": "https://www.systemprompts.fun/guides/advanced-prompt-engineering",
     "keywords": ["advanced prompt engineering", "chain of thought prompting", "agentic prompts", "tool use prompts", "prompt engineering techniques"],
     "intent": "informational"
   },
   "openGraph": {
     "title": "Advanced Prompt Engineering Techniques | Deep Dive",
     "description": "Advanced techniques: chain-of-thought, tool use, and agentic prompts from real production AI tool system prompts.",
-    "url": "https://systemprompts.fun/guides/advanced-prompt-engineering",
+    "url": "https://www.systemprompts.fun/guides/advanced-prompt-engineering",
     "siteName": "SystemPrompts",
     "type": "article"
   },
@@ -115,7 +115,7 @@
     "readingTime": 12,
     "author": {
       "name": "SystemPrompts Archive",
-      "url": "https://systemprompts.fun"
+      "url": "https://www.systemprompts.fun"
     },
     "tableOfContents": [
       { "id": "chain-of-thought", "title": "Chain-of-Thought Prompting", "level": 2 },

@@ -6,10 +6,11 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 
 const BASE_URL = DEFAULT_PSEO_CONFIG.baseUrl;
 const SITE_NAME = DEFAULT_PSEO_CONFIG.siteName;
+const OG_IMAGE = `${BASE_URL}${DEFAULT_PSEO_CONFIG.defaultOgImage}`;
 
 export const metadata: Metadata = {
   title: 'AI Coding Guides | Best Practices & Tutorials',
-  description: `${guideTopics.length}+ in-depth guides on AI coding tools, prompt engineering, and best practices. Learn how to get the most from AI coding assistants like Cursor, Claude Code, and GitHub Copilot.`,
+  description: `${guideTopics.length}+ guides on AI coding tools, prompt engineering, and assistants. Cursor, Claude Code, Copilot, and best practices for developers.`,
   alternates: { canonical: `${BASE_URL}/guides` },
   openGraph: {
     title: 'AI Coding Guides | Best Practices & Tutorials',
@@ -17,6 +18,13 @@ export const metadata: Metadata = {
     type: 'website',
     url: `${BASE_URL}/guides`,
     siteName: SITE_NAME,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'AI coding guides on SystemPrompts' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Coding Guides | Best Practices & Tutorials',
+    description: 'In-depth guides on AI coding tools, prompt engineering, and developer best practices.',
+    images: [OG_IMAGE],
   },
 };
 

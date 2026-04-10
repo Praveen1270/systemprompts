@@ -7,9 +7,10 @@ import "./globals.css";
 // Site Configuration
 // =============================================================================
 
-const SITE_URL = "https://systemprompts.fun";
+const SITE_URL = "https://www.systemprompts.fun";
 const SITE_NAME = "SystemPrompts";
-const SITE_DESCRIPTION = "Browse verified system prompts from Cursor, Claude Code, v0, Lovable, Devin, and 50+ more AI tools. Reverse-engineered and ready to use. Free.";
+const SITE_DESCRIPTION =
+  "Free verified LLM system prompts from Cursor, Claude Code, v0, Lovable, Devin, Copilot, and 50+ tools. Search, compare, and learn how products instruct models.";
 
 // =============================================================================
 // Metadata
@@ -20,8 +21,8 @@ export const metadata: Metadata = {
 
   // Basic metadata
   title: {
-    default: `LLM System Prompts Database | Cursor, Claude Code, v0 & More`,
-    template: `%s | ${SITE_NAME}`,
+    default: `LLM System Prompts: Cursor, Claude & 50+ Tools`,
+    template: `%s`,
   },
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
@@ -59,9 +60,9 @@ export const metadata: Metadata = {
     },
   },
   
-  // Icons
+  // Icons (SVG for modern clients; ICO/apple often added at deploy)
   icons: {
-    icon: "/favicon.ico",
+    icon: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
     apple: "/apple-touch-icon.png",
   },
   
@@ -74,7 +75,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `LLM System Prompts Database | Cursor, Claude Code, v0 & More`,
+    title: `LLM System Prompts: Cursor, Claude & 50+ Tools`,
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -91,7 +92,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@Praveenthotakur",
     creator: "@Praveenthotakur",
-    title: `LLM System Prompts Database | Cursor, Claude Code, v0 & More`,
+    title: `LLM System Prompts: Cursor, Claude & 50+ Tools`,
     description: SITE_DESCRIPTION,
     images: [`${SITE_URL}/og-default.png`],
   },

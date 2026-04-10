@@ -6,14 +6,14 @@
   "seo": {
     "title": "How to Write Effective AI Prompts | Prompt Engineering Guide 2026",
     "description": "Learn the exact techniques used in production AI tool system prompts to write prompts that get consistent, high-quality results. Based on verified system prompts from Cursor, Claude Code, and more.",
-    "canonical": "https://systemprompts.fun/guides/how-to-write-effective-prompts",
+    "canonical": "https://www.systemprompts.fun/guides/how-to-write-effective-prompts",
     "keywords": ["how to write prompts", "prompt engineering guide", "effective AI prompts", "system prompt techniques", "prompt writing best practices"],
     "intent": "informational"
   },
   "openGraph": {
     "title": "How to Write Effective AI Prompts | Prompt Engineering Guide 2026",
     "description": "Learn prompt engineering techniques from real production system prompts used by Cursor, Claude Code, and GitHub Copilot.",
-    "url": "https://systemprompts.fun/guides/how-to-write-effective-prompts",
+    "url": "https://www.systemprompts.fun/guides/how-to-write-effective-prompts",
     "siteName": "SystemPrompts",
     "type": "article"
   },
@@ -130,7 +130,7 @@
     "readingTime": 10,
     "author": {
       "name": "SystemPrompts Archive",
-      "url": "https://systemprompts.fun"
+      "url": "https://www.systemprompts.fun"
     },
     "tableOfContents": [
       { "id": "why-prompts-matter", "title": "Why System Prompts Matter", "level": 2 },

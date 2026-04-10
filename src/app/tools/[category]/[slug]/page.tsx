@@ -77,7 +77,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   
   const title = `${tool.name} System Prompt | ${tool.category} Prompts`;
   const description = `Explore ${tool.name} system prompts. ${tool.description}`;
-  
+  const ogImage = `${DEFAULT_PSEO_CONFIG.baseUrl}${DEFAULT_PSEO_CONFIG.defaultOgImage}`;
+
   return {
     title,
     description,
@@ -91,11 +92,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'website',
       url: `${DEFAULT_PSEO_CONFIG.baseUrl}/tools/${category}/${slug}`,
       siteName: DEFAULT_PSEO_CONFIG.siteName,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [ogImage],
     },
   };
 }

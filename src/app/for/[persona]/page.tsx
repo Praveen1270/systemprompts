@@ -7,6 +7,7 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 
 const BASE_URL = DEFAULT_PSEO_CONFIG.baseUrl;
 const SITE_NAME = DEFAULT_PSEO_CONFIG.siteName;
+const OG_IMAGE = `${BASE_URL}${DEFAULT_PSEO_CONFIG.defaultOgImage}`;
 
 interface PageProps {
   params: Promise<{ persona: string }>;
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!entry) return { title: 'Not Found' };
 
-  const title = `Best AI Coding Tools for ${entry.name} in ${new Date().getFullYear()}`;
-  const description = `The best AI coding assistants and system prompts for ${entry.name.toLowerCase()}. Compare top tools, see real system prompts, and choose the right AI for your workflow.`;
+  const year = new Date().getFullYear();
+  const title = `AI Coding Tools for ${entry.name} (${year})`;
+  const description = `The best AI coding assistants and system prompts for ${entry.name.toLowerCase()}. Compare tools, see real system prompts, and choose the right AI for your workflow.`;
   const url = `${BASE_URL}/for/${persona}`;
 
   return {
@@ -31,8 +33,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     keywords: [...entry.keywords, 'AI coding tools', 'system prompts', 'best AI assistant', entry.name],
     alternates: { canonical: url },
-    openGraph: { title, description, type: 'website', url, siteName: SITE_NAME },
-    twitter: { card: 'summary_large_image', title, description },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url,
+      siteName: SITE_NAME,
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: title }],
+    },
+    twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE] },
   };
 }
 

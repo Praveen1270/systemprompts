@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getToolById } from '@/data/tools';
 
-const SITE_URL = 'https://systemprompts.fun';
+const SITE_URL = 'https://www.systemprompts.fun';
 const SITE_NAME = 'SystemPrompts';
 
 interface LayoutProps {

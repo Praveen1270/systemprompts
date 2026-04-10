@@ -6,17 +6,25 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 
 const BASE_URL = DEFAULT_PSEO_CONFIG.baseUrl;
 const SITE_NAME = DEFAULT_PSEO_CONFIG.siteName;
+const OG_IMAGE = `${BASE_URL}${DEFAULT_PSEO_CONFIG.defaultOgImage}`;
 
 export const metadata: Metadata = {
   title: 'AI Coding Use Cases | How Developers Use AI Tools',
-  description: `Explore ${useCases.length}+ AI coding use cases. From code generation to security audits, learn how AI tools handle every development task and see their system prompts.`,
+  description: `Explore ${useCases.length}+ AI coding use cases. From code generation to security audits—see how tools handle each task and their system prompts.`,
   alternates: { canonical: `${BASE_URL}/use-cases` },
   openGraph: {
     title: 'AI Coding Use Cases | How Developers Use AI Tools',
-    description: `${useCases.length}+ AI coding use cases explained with recommended tools and verified system prompts.`,
+    description: `${useCases.length}+ AI coding use cases with recommended tools and verified system prompts.`,
     type: 'website',
     url: `${BASE_URL}/use-cases`,
     siteName: SITE_NAME,
+    images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'AI coding use cases on SystemPrompts' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Coding Use Cases | How Developers Use AI Tools',
+    description: `${useCases.length}+ AI coding use cases with recommended tools and verified system prompts.`,
+    images: [OG_IMAGE],
   },
 };
 

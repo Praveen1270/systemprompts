@@ -20,6 +20,13 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 
 const config: PSEOConfig = DEFAULT_PSEO_CONFIG;
 
+function absoluteOgImageUrl(image?: string): string {
+  const fallback = `${config.baseUrl}${config.defaultOgImage}`;
+  if (!image) return fallback;
+  if (image.startsWith('http')) return image;
+  return `${config.baseUrl}${image.startsWith('/') ? image : `/${image}`}`;
+}
+
 // =============================================================================
 // Title Generation
 // =============================================================================
@@ -160,7 +167,9 @@ export function generateDescription(
  */
 export function generateMetadata(pageData: PSEOPageData): Metadata {
   const { seo, openGraph, twitter } = pageData;
-  
+  const ogImageUrl = absoluteOgImageUrl(openGraph.image);
+  const twitterImageUrl = absoluteOgImageUrl(twitter.image ?? openGraph.image);
+
   return {
     title: seo.title,
     description: seo.description,
@@ -183,14 +192,14 @@ export function generateMetadata(pageData: PSEOPageData): Metadata {
       url: openGraph.url,
       siteName: openGraph.siteName,
       type: openGraph.type,
-      images: openGraph.image ? [
+      images: [
         {
-          url: openGraph.image,
+          url: ogImageUrl,
           alt: openGraph.imageAlt || openGraph.title,
           width: 1200,
           height: 630,
         },
-      ] : undefined,
+      ],
     },
     
     // Twitter
@@ -198,7 +207,7 @@ export function generateMetadata(pageData: PSEOPageData): Metadata {
       card: twitter.card,
       title: twitter.title,
       description: twitter.description,
-      images: twitter.image ? [twitter.image] : undefined,
+      images: [twitterImageUrl],
     },
     
     // Additional meta
@@ -221,6 +230,7 @@ export function generateMetadataFromSlug(
   const description = generateDescription(template, vars);
   
   const canonical = buildCanonicalUrl(slug, template, baseUrl);
+  const ogImageUrl = absoluteOgImageUrl();
   
   return {
     title,
@@ -233,11 +243,15 @@ export function generateMetadataFromSlug(
       url: canonical,
       siteName: config.siteName,
       type: template === 'guide' ? 'article' : 'website',
+      images: [
+        { url: ogImageUrl, alt: title, width: 1200, height: 630 },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [ogImageUrl],
     },
   };
 }
