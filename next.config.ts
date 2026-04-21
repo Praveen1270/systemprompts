@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { HOME_LINK_HEADER } from "./src/lib/agent/home-link-header";
 
 const nextConfig: NextConfig = {
   // ==========================================================================
@@ -52,6 +53,15 @@ const nextConfig: NextConfig = {
   // ==========================================================================
   async headers() {
     return [
+      {
+        source: '/',
+        headers: [
+          {
+            key: 'Link',
+            value: HOME_LINK_HEADER,
+          },
+        ],
+      },
       {
         // Apply to all routes
         source: '/:path*',
