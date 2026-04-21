@@ -95,7 +95,7 @@
     "/api/x402/premium": {
       "get": {
         "summary": "x402-gated premium JSON (HTTP 402 when unpaid)",
-        "description": "Uses the x402 protocol. When `X402_PAY_TO` is unset, returns 503. Otherwise unpaid requests receive 402 with payment requirements per https://x402.org",
+        "description": "Uses @x402/next with facilitator https://facilitator.x402.org (override via X402_FACILITATOR_URL). Unpaid requests receive HTTP 402 with machine-readable payment requirements per https://x402.org. Set X402_PAY_TO to your wallet; if unset, a discovery placeholder payTo is used so agents still see 402.",
         "operationId": "x402Premium",
         "responses": {
           "200": {
@@ -119,8 +119,8 @@
           "402": {
             "description": "Payment required (x402)"
           },
-          "503": {
-            "description": "x402 not configured on server (missing X402_PAY_TO)"
+          "502": {
+            "description": "Facilitator error (x402 settlement/verify)"
           }
         }
       }

@@ -3,6 +3,17 @@ import { DEFAULT_PSEO_CONFIG } from '@/lib/pseo/types';
 const BASE = DEFAULT_PSEO_CONFIG.baseUrl.replace(/\/$/, '');
 
 /**
+ * Canonical site origin for discovery metadata. Prefer env in production so issuer matches your deployment.
+ */
+export function getDiscoveryBaseFromRequest(request: { nextUrl: { origin: string } }): string {
+  const env =
+    process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, '') ||
+    process.env.SITE_URL?.trim().replace(/\/$/, '');
+  if (env) return env;
+  return request.nextUrl.origin.replace(/\/$/, '');
+}
+
+/**
  * Shared OAuth 2.0 / OIDC discovery URLs (same origin).
  * Public JSON APIs are open; premium routes may use x402 — metadata documents the issuer for agents.
  */
@@ -45,13 +56,16 @@ export function getOpenIdConfigurationMetadata() {
   };
 }
 
-export function getOAuthProtectedResourceMetadata() {
-  const { issuer } = getIssuerMetadataUrls();
+/**
+ * RFC 9728 — use the same origin the client used so `resource` matches the scanned deployment (www vs apex, previews).
+ */
+export function getOAuthProtectedResourceMetadata(siteOrigin: string = BASE) {
+  const origin = siteOrigin.replace(/\/$/, '');
   return {
-    resource: `${BASE}/api/x402/premium`,
-    authorization_servers: [issuer],
+    resource: `${origin}/api/x402/premium`,
+    authorization_servers: [origin],
     scopes_supported: ['api', 'payment.x402'],
     bearer_methods_supported: ['header'],
-    resource_documentation: `${BASE}/openapi.json`,
+    resource_documentation: `${origin}/openapi.json`,
   };
 }
