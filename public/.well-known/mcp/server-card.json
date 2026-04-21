@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1.0",
+  "serverInfo": {
+    "name": "SystemPrompts",
+    "version": "0.1.0",
+    "description": "Verified LLM system prompt archive. Primary integration is via public HTTPS JSON (/api/prompts, /api/prompt); no streaming MCP transport is hosted on this origin."
+  },
+  "capabilities": {
+    "tools": false,
+    "resources": false,
+    "prompts": false
+  },
+  "transport": {
+    "type": "https",
+    "url": "https://www.systemprompts.fun/api/prompts"
+  },
+  "documentation": "https://www.systemprompts.fun/guides"
+}

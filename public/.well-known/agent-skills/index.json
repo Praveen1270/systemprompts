@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "skills": [
+    {
+      "name": "systemprompts.archive",
+      "type": "documentation",
+      "description": "Browse and retrieve verified system prompts from 50+ AI coding tools via the public JSON API and on-site guides.",
+      "url": "https://www.systemprompts.fun/guides",
+      "sha256": "2d9da7cf09b33060c230f1a93a013d288578947426cae91f5a296bdb482ff8cf"
+    }
+  ]
+}

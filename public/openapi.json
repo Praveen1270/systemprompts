@@ -1,0 +1,129 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "SystemPrompts public API",
+    "version": "0.1.0",
+    "description": "Read-only JSON endpoints for the SystemPrompts archive. No authentication is required."
+  },
+  "servers": [
+    {
+      "url": "https://www.systemprompts.fun",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/api/prompts": {
+      "get": {
+        "summary": "List indexed prompts",
+        "operationId": "listPrompts",
+        "responses": {
+          "200": {
+            "description": "JSON object with an `items` array of prompt index entries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": { "type": "object" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/prompt": {
+      "get": {
+        "summary": "Fetch prompt file content",
+        "operationId": "getPrompt",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Relative path under src/prompts (from the internal file map)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Prompt body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "content": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Missing path" },
+          "403": { "description": "Invalid path" },
+          "404": { "description": "File not found" }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "summary": "Health check",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Service OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": { "type": "boolean" },
+                    "service": { "type": "string" },
+                    "ts": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/x402/premium": {
+      "get": {
+        "summary": "x402-gated premium JSON (HTTP 402 when unpaid)",
+        "description": "Uses the x402 protocol. When `X402_PAY_TO` is unset, returns 503. Otherwise unpaid requests receive 402 with payment requirements per https://x402.org",
+        "operationId": "x402Premium",
+        "responses": {
+          "200": {
+            "description": "Paid or waived response body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": { "type": "boolean" },
+                    "message": { "type": "string" },
+                    "free_apis": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required (x402)"
+          },
+          "503": {
+            "description": "x402 not configured on server (missing X402_PAY_TO)"
+          }
+        }
+      }
+    }
+  }
+}

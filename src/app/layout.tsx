@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
+import WebMcpProvider from "@/components/WebMcpProvider";
 import "./globals.css";
 
 // =============================================================================
@@ -188,6 +189,7 @@ export default function RootLayout({
         <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
         <link rel="icon" href="/logo.png" type="image/png" sizes="48x48" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        <link rel="api-catalog" href={`${SITE_URL}/.well-known/api-catalog`} />
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />
@@ -230,7 +232,7 @@ export default function RootLayout({
           src="//gc.zgo.at/count.js"
           strategy="afterInteractive"
         />
-        {children}
+        <WebMcpProvider>{children}</WebMcpProvider>
         <Analytics />
         {/* Apitiny Ads */}
         <Script
