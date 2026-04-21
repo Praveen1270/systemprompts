@@ -34,6 +34,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'daily',
     priority: 1.0,
   });
+
+  entries.push({
+    url: `${BASE_URL}/resources`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.78,
+  });
+
+  entries.push({
+    url: `${BASE_URL}/resources/hermes-openclaw-llm-cheat-sheet`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  });
   
   // ==========================================================================
   // Category Hub Pages

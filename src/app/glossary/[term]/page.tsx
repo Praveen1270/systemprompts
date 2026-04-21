@@ -158,7 +158,7 @@ export default async function GlossaryTermPage({ params }: PageProps) {
                       href={`/tools/${tool.categorySlug}/${tool.slug}`}
                       className="glass-panel p-4 flex items-center gap-4 hover:border-accent-primary/40 transition-all group"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-lg bg-bg-base flex items-center justify-center flex-shrink-0">
                         <ExternalLink className="w-4 h-4 text-accent-primary" />
                       </div>
                       <div>

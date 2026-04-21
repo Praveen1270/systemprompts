@@ -16,6 +16,8 @@ const SEO_HUB_LINKS = [
   { href: '/compare', label: 'Comparisons' },
   { href: '/use-cases', label: 'Use cases' },
   { href: '/for/frontend-developers', label: 'By role' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/resources/hermes-openclaw-llm-cheat-sheet', label: 'Hermes + OpenClaw LLM sheet' },
 ] as const;
 
 export default function HomeClient() {

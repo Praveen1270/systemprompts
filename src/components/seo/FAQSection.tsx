@@ -95,7 +95,7 @@ interface FAQItemProps {
 function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
   return (
     <div
-      className={`glass-panel overflow-hidden transition-all duration-300 ${isOpen ? 'bg-white/[0.04]' : 'bg-white/[0.01]'}`}
+      className={`glass-panel overflow-hidden transition-all duration-300 ${isOpen ? 'bg-bg-surface' : 'bg-bg-base/50'}`}
       itemScope
       itemProp="mainEntity"
       itemType="https://schema.org/Question"
@@ -104,7 +104,7 @@ function FAQItem({ faq, isOpen, onToggle }: FAQItemProps) {
       <button
         type="button"
         onClick={onToggle}
-        className="w-full flex items-center justify-between gap-4 p-6 text-left hover:bg-white/[0.02] transition-colors"
+        className="w-full flex items-center justify-between gap-4 p-6 text-left hover:bg-bg-base transition-colors"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${faq.id}`}
       >

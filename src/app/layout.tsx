@@ -60,10 +60,15 @@ export const metadata: Metadata = {
     },
   },
   
-  // Icons (SVG for modern clients; ICO/apple often added at deploy)
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/logo.png", type: "image/png", sizes: "32x32" },
+      { url: "/logo.png", type: "image/png", sizes: "48x48" },
+      { url: "/logo.png", type: "image/png", sizes: "96x96" },
+      { url: "/icon.svg", type: "image/svg+xml", sizes: "any" },
+    ],
+    shortcut: "/logo.png",
+    apple: [{ url: "/logo.png", sizes: "180x180", type: "image/png" }],
   },
   
   // Manifest
@@ -120,8 +125,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#030303" },
-    { media: "(prefers-color-scheme: dark)", color: "#030303" },
+    { media: "(prefers-color-scheme: light)", color: "#f5f5f7" },
+    { media: "(prefers-color-scheme: dark)", color: "#f5f5f7" },
   ],
 };
 
@@ -137,8 +142,8 @@ const organizationSchema = {
   logo: {
     "@type": "ImageObject",
     url: `${SITE_URL}/logo.png`,
-    width: 512,
-    height: 512,
+    width: 750,
+    height: 750,
   },
   description: SITE_DESCRIPTION,
   founder: {
@@ -180,6 +185,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/logo.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/logo.png" type="image/png" sizes="48x48" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" />

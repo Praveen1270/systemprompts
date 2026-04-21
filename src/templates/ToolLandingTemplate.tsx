@@ -90,7 +90,7 @@ export function ToolLandingTemplate({
           <header className="mb-10 md:mb-12">
             <div className="flex flex-col md:flex-row md:items-start gap-6">
               {/* Logo */}
-              <div className="w-20 h-20 rounded-2xl glass-panel flex items-center justify-center overflow-hidden flex-shrink-0 border border-border-subtle bg-white/[0.02]">
+              <div className="w-20 h-20 rounded-2xl flex items-center justify-center overflow-hidden flex-shrink-0 border border-border-subtle bg-bg-base">
                 {!imageError && toolData.logo ? (
                   <Image
                     src={toolData.logo}
@@ -221,7 +221,7 @@ export function ToolLandingTemplate({
                 </button>
               </div>
               <div className="glass-panel rounded-xl overflow-hidden border border-border-subtle">
-                <div className="p-2 border-b border-border-subtle flex items-center gap-1.5 bg-white/[0.02]">
+                <div className="p-2 border-b border-border-subtle flex items-center gap-1.5 bg-bg-base">
                   <div className="w-2.5 h-2.5 rounded-full bg-accent-primary/40" />
                   <div className="w-2.5 h-2.5 rounded-full bg-accent-secondary/40" />
                   <div className="w-2.5 h-2.5 rounded-full bg-text-muted/50" />

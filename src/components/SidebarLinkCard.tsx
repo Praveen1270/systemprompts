@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import type { SidebarLinkCardItem } from '@/data/sidebarLinks';
 
-/** Single brand surface: blue primary + violet secondary accent (matches globals.css) */
+/** Light surface — matches globals.css tokens */
 const brandCard =
-  'bg-white/[0.03] border-white/[0.08] hover:border-accent-primary/35 hover:bg-white/[0.05]';
+  'bg-bg-surface border-border-subtle hover:border-accent-primary/35 hover:shadow-sm';
 
 export default function SidebarLinkCard({ item }: { item: SidebarLinkCardItem }) {
   return (
@@ -17,7 +17,7 @@ export default function SidebarLinkCard({ item }: { item: SidebarLinkCardItem })
       className={[
         'group block rounded-2xl border p-4 sm:p-5 transition-all',
         brandCard,
-        'hover:shadow-[0_0_24px_-4px_rgba(59,130,246,0.25)]',
+        'hover:shadow-md',
       ].join(' ')}
       title={item.title}
     >

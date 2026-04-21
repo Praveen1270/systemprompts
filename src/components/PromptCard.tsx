@@ -99,7 +99,7 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
 
   return (
     <div className="glow-card h-full group">
-      <div className="glass-panel h-full flex flex-col p-6 transition-all duration-500 hover:bg-white/[0.04]">
+      <div className="glass-panel h-full flex flex-col p-6 transition-shadow duration-300 hover:shadow-md">
         {/* Header Metadata */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-2">
@@ -113,7 +113,7 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
             <button
               type="button"
               onClick={handleCopy}
-              className="p-2 rounded-lg bg-white/5 border border-white/5 text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all"
+              className="p-2 rounded-lg bg-bg-base border border-border-subtle text-text-secondary hover:text-text-primary hover:bg-bg-surface transition-all"
               title="Copy Sequence"
             >
               {copyState === 'copied' ? (
@@ -125,7 +125,7 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
             <button
               type="button"
               onClick={handleShare}
-              className="p-2 rounded-lg bg-white/5 border border-white/5 text-text-secondary hover:text-text-primary hover:bg-white/10 transition-all"
+              className="p-2 rounded-lg bg-bg-base border border-border-subtle text-text-secondary hover:text-text-primary hover:bg-bg-surface transition-all"
               title="Share Link"
             >
               <Share2 className="w-3.5 h-3.5" />
@@ -134,7 +134,7 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
         </div>
 
         {/* Console Preview */}
-        <div className="relative rounded-xl bg-black/40 border border-white/5 p-4 mb-6 flex-1 group/preview overflow-hidden">
+        <div className="relative rounded-xl bg-bg-base border border-border-subtle p-4 mb-6 flex-1 group/preview overflow-hidden">
           <div className="absolute top-2 right-2 opacity-0 group-hover/preview:opacity-100 transition-opacity">
             <Terminal className="w-3 h-3 text-accent-primary/40" />
           </div>
@@ -153,7 +153,7 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
             {visibleTags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 rounded font-technical text-[10px] bg-white/5 border border-white/5 text-text-muted hover:text-accent-primary hover:border-accent-primary/30 transition-colors"
+                className="px-2 py-0.5 rounded font-technical text-[10px] bg-bg-base border border-border-subtle text-text-muted hover:text-accent-primary hover:border-accent-primary/40 transition-colors"
               >
                 {tag}
               </span>
@@ -161,14 +161,14 @@ export default function PromptCard({ prompt, index }: PromptCardProps) {
 
             {hiddenTags.length > 0 && (
               <div className="relative group/tags">
-                <span className="cursor-help px-2 py-0.5 rounded font-technical text-[10px] bg-white/5 border border-white/5 text-text-muted">
+                <span className="cursor-help px-2 py-0.5 rounded font-technical text-[10px] bg-bg-base border border-border-subtle text-text-muted">
                   +{hiddenTags.length}
                 </span>
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 opacity-0 group-hover/tags:opacity-100 transition-opacity pointer-events-none z-50">
-                  <div className="glass-panel p-3 shadow-2xl bg-bg-elevated/95">
+                  <div className="glass-panel p-3 shadow-lg">
                     <div className="flex flex-wrap gap-1.5">
                       {hiddenTags.map((tag) => (
-                        <span key={tag} className="text-[9px] font-technical text-text-secondary bg-white/5 px-1.5 py-0.5 rounded">
+                        <span key={tag} className="text-[9px] font-technical text-text-secondary bg-bg-base px-1.5 py-0.5 rounded border border-border-subtle">
                           {tag}
                         </span>
                       ))}

@@ -189,7 +189,7 @@ export function CategoryPills({
             className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
               isActive
                 ? 'bg-accent-primary text-white shadow-[0_0_12px_rgba(59,130,246,0.35)]'
-                : 'bg-white/5 text-text-secondary hover:bg-white/10 border border-border-subtle'
+                : 'bg-bg-base text-text-secondary hover:bg-bg-surface border border-border-subtle'
             }`}
             aria-current={isActive ? 'page' : undefined}
           >

@@ -114,10 +114,9 @@ const nextConfig: NextConfig = {
   // ==========================================================================
   async redirects() {
     return [
-      // Redirect old tool URLs to new structure
       {
-        source: '/tool/:id',
-        destination: '/tools/:id',
+        source: '/hermes-openclaw-llm-cheat-sheet',
+        destination: '/resources/hermes-openclaw-llm-cheat-sheet',
         permanent: true,
       },
       // Ensure trailing slashes are handled consistently

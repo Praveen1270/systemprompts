@@ -195,9 +195,9 @@ function getTemplateBadge(template: PageTemplate): { label: string; className: s
     case 'guide':
       return { label: 'Guide', className: 'bg-accent-primary/10 text-text-primary border border-border-subtle' };
     case 'hub':
-      return { label: 'Category', className: 'bg-white/5 text-text-secondary border border-border-subtle' };
+      return { label: 'Category', className: 'bg-bg-base text-text-secondary border border-border-subtle' };
     default:
-      return { label: 'Page', className: 'bg-white/5 text-text-muted border border-border-subtle' };
+      return { label: 'Page', className: 'bg-bg-base text-text-muted border border-border-subtle' };
   }
 }
 

@@ -25,9 +25,9 @@ export default function ToolCard({ tool, index }: ToolCardProps) {
     >
       <Link href={`/tool/${tool.id}`} className="block h-full">
         <div className="group relative h-full glow-card">
-          <div className="relative h-full glass-panel rounded-2xl p-5 sm:p-6 border border-border-subtle transition-all duration-300 hover:bg-white/[0.04] hover:border-accent-primary/25">
+          <div className="relative h-full glass-panel rounded-2xl p-5 sm:p-6 border border-border-subtle transition-all duration-300 hover:shadow-md hover:border-accent-primary/25">
             <div className="flex items-start justify-between gap-3 mb-4">
-              <div className="w-14 h-14 rounded-xl glass-panel flex items-center justify-center overflow-hidden border border-border-subtle bg-white/[0.02]">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center overflow-hidden border border-border-subtle bg-bg-base">
                 {!imageError ? (
                   <Image
                     src={tool.logo}
