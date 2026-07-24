@@ -306,6 +306,20 @@ export default function HomeClient() {
                 />
               </a>
               <a
+                href="https://nicklaunches.com/products/llm-system-prompts/?utm_source=systemprompts.fun&utm_medium=badge&utm_campaign=featured"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block opacity-90 hover:opacity-100 transition-opacity shrink-0"
+              >
+                <img
+                  src="https://nicklaunches.com/badges/featured.png"
+                  alt="LLM System Prompts on Nick Launches"
+                  width={244}
+                  height={56}
+                  className="h-11 w-auto"
+                />
+              </a>
+              <a
                 href="https://twitter.com/Praveenthotakur"
                 target="_blank"
                 rel="noopener noreferrer"
