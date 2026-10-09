@@ -262,7 +262,7 @@ export default function HomeClient() {
                 SYSTEMPROMPTS ARCHIVE // VERIFIED TRANSMISSIONS ONLY
               </p>
             </div>
-            <div className="flex flex-col md:flex-row items-center gap-6">
+            <div className="flex flex-col md:flex-row md:flex-wrap items-center gap-6">
               <a
                 href="https://listmysaas.xyz/"
                 target="_blank"
@@ -316,6 +316,36 @@ export default function HomeClient() {
                   alt="LLM System Prompts on Nick Launches"
                   width={244}
                   height={56}
+                  className="h-11 w-auto"
+                />
+              </a>
+              <a
+                href="https://www.scrolllaunch.com/products/llm-system-prompts?ref=badge"
+                target="_blank"
+                rel="noopener"
+                className="inline-block opacity-90 hover:opacity-100 transition-opacity shrink-0"
+              >
+                <img
+                  src="https://www.scrolllaunch.com/api/badge/llm-system-prompts"
+                  alt="Featured on ScrollLaunch"
+                  width={220}
+                  height={48}
+                  loading="lazy"
+                  className="h-11 w-auto"
+                />
+              </a>
+              <a
+                href="https://turbo0.com/item/system-prompts"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block opacity-90 hover:opacity-100 transition-opacity shrink-0"
+              >
+                <img
+                  src="https://img.turbo0.com/badge-listed-light.svg"
+                  alt="Listed on Turbo0"
+                  width={161}
+                  height={54}
+                  loading="lazy"
                   className="h-11 w-auto"
                 />
               </a>
