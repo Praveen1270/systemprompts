@@ -7,6 +7,7 @@ import { Loader2, Search, Cpu, Command } from 'lucide-react';
 import PromptCard from '@/components/PromptCard';
 import CategoryFilter from '@/components/CategoryFilter';
 import SearchBar from '@/components/SearchBar';
+import { TinyShelfBadge } from '@/components/TinyShelfBadge';
 import { categories } from '@/data/tools';
 import type { PromptIndexItem } from '@/data/promptTypes';
 
@@ -349,6 +350,23 @@ export default function HomeClient() {
                   className="h-11 w-auto"
                 />
               </a>
+              <a
+                href="https://dailypings.com/p/llm-system-prompts-cursor-claude-50-tools"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Featured on DailyPings"
+                className="inline-block opacity-90 hover:opacity-100 transition-opacity shrink-0"
+              >
+                <img
+                  src="https://dailypings.com/badge.svg"
+                  alt="Featured on DailyPings"
+                  width={179}
+                  height={32}
+                  loading="lazy"
+                  className="h-11 w-auto"
+                />
+              </a>
+              <TinyShelfBadge />
               <a
                 href="https://twitter.com/Praveenthotakur"
                 target="_blank"
